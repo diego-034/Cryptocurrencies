@@ -1,3 +1,17 @@
 .bg-primary {
     background-color: #252525;
 }
+
+body {
+    width: 100%;
+}
+
+.uk-text-white {
+    color: #9b9b9b;
+}
+
+.font-color-gray {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: #9b9b9b;
+}
