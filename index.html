@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 
-<body class="bg-primary">
+<body class="">
     <div class=" uk-container uk-padding ">
-        <h3 class="uk-text-white">Top 100 Cryptocurrencies by Market Cap</h3>
+        <h3 class="uk-text-white">Top 100 Cryptocurrencies by Market Cap</h3>        
         <div class="uk-overflow-auto">
-            <table class="uk-table uk-table-small uk-table-divider">
+            <table class="uk-table uk-table-small uk-table-divider uk-table-hover" id="list-coins">
                 <thead>
                     <tr>
                         <th class="uk-table-shrink">#</th>
@@ -26,24 +26,16 @@
                         <th class="uk-text-right">Liquidity</th>
                         <th class="uk-text-right">MarketCap</th>
                     </tr>
-                </thead>
-                <tbody class="font-color-gray">
-                    <tr>
-                        <td class="uk-table-shrink">1</td>
-                        <td class="uk-width-small">
-                            OmiseGO OMG
-                        </td>
-                        <td class="uk-width-small uk-text-right">$1.55</td>
-                        <td class="uk-width-small uk-table-shrink uk-text-right">-1.5%</td>
-                        <td>0.35%</td>
-                        <td class="uk-text-right">-0.45%</td>
-                        <td class="uk-text-right">$70 327 921</td>
-                        <td class="uk-text-right uk-background-primary">GRAPHIC</td>
-                        <td class="uk-text-right">$35 405 069 243 </td>
-                    </tr>
+                </thead>               
+                
+                    
                 </tbody>
-            </table>
+            </table>           
         </div>
+        <center>
+            <span class="uk-margin-xlarge-top" uk-spinner="ratio: 3" id="loader"></span>
+        </center>
+      
     </div>
     <script src="assets/js/main.js "></script>
     <script src="assets/js/uikit.min.js "></script>
