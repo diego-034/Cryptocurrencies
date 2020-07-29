@@ -19,6 +19,7 @@
             <li class=""><a id="btn_price">Price Overview</a></li>
             <li class=""><a id="btn_return">Return Rates</a></li>
             <li class=""><a id="btn_community">Community</a></li>
+            <li class=""><a id="btn_ath">All Time Hight</a></li>
         </ul>
         <!-- table price overview -->
         <div class="uk-overflow-auto">
@@ -48,7 +49,6 @@
                         <th class="uk-width-small uk-text-right">Price</th>
                         <th class="uk-table-shrink uk-text-right">7d</th>
                         <th class="uk-table-shrink uk-text-right">30d</th>
-                        <th class="uk-text-right">1q</th>
                         <th class="uk-text-right">1y</th>
                     </tr>
                 </thead>
@@ -68,6 +68,23 @@
                         <th class="uk-text-right">Starts</th>
                         <th class="uk-text-right">1m Commits</th>
                         <th class="uk-text-right">Contributors</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <!-- table ATH -->
+        <div class="uk-overflow-auto">
+            <table class="uk-table uk-table-small uk-table-divider uk-table-hover display-none" id="list-ath">
+                <thead>
+                    <tr>
+                        <th class="uk-table-shrink">#</th>
+                        <th class="uk-width-small">Name</th>
+                        <th class="uk-width-small uk-text-right">Price</th>
+                        <th class="uk-table-small uk-text-right">ATH Price</th>
+                        <th class="uk-table-small uk-text-right">ATH Date</th>
+                        <th class="uk-table-small uk-text-right"> Days from ATH</th>
+                        <th class="uk-text-right uk-width-small">% from ATH</th>
+                        <th class="uk-text-right">% to ATH</th>
                     </tr>
                 </thead>
             </table>
