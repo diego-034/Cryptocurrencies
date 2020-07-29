@@ -10,10 +10,17 @@
 </head>
 
 <body class="">
+   
     <div class=" uk-container uk-padding ">
-        <h3 class="uk-text-white">Top 100 Cryptocurrencies by Market Cap</h3>        
+        <h3 class="uk-text-white">Top 100 Cryptocurrencies by Market Cap</h3>  
+        <ul class="uk-tab-center" uk-tab="media: @s">
+            <li class=""><a id="btn_price">Price Overview</a></li>
+            <li class=""><a id="btn_return">Return Rates</a></li>
+            <li class=""><a id="btn_community">Community</a></li>
+        </ul>
         <div class="uk-overflow-auto">
-            <table class="uk-table uk-table-small uk-table-divider uk-table-hover" id="list-coins">
+            <!-- table of Price Overview -->
+            <table class="uk-table uk-table-small uk-table-divider uk-table-hover" id="list-price" style="display: block;" >
                 <thead>
                     <tr>
                         <th class="uk-table-shrink">#</th>
@@ -28,9 +35,40 @@
                     </tr>
                 </thead>               
                 
-                    
-                </tbody>
-            </table>           
+            </table>
+            
+            <!-- table of Return rates -->
+            <table class="uk-table uk-table-small uk-table-divider uk-table-hover" id="list-return"  style="display: none;">
+                <thead>
+                    <tr>
+                        <th class="uk-table-shrink">#</th>
+                        <th class="uk-width-small">Name</th>
+                        <th class="uk-width-small uk-text-right">Price</th>
+                        <th class="uk-table-shrink uk-text-right">7d</th>
+                        <th class="uk-table-shrink uk-text-right">30d</th>
+                        <th class="uk-text-right">1q</th>
+                        <th class="uk-text-right">1y</th>
+                    </tr>
+                </thead>               
+                
+            </table> 
+            
+            <!-- table of Community -->
+            <table class="uk-table uk-table-small uk-table-divider uk-table-hover" id="list-community"  style="display: none;">
+                <thead>
+                    <tr>
+                        <th class="uk-table-shrink">#</th>
+                        <th class="uk-width-small">Name</th>
+                        <th class="uk-width-small uk-text-right">Price</th>
+                        <th class="uk-table-shrink uk-text-right">Followers</th>
+                        <th class="uk-table-shrink uk-text-right">Subs</th>
+                        <th class="uk-text-right">Telegram</th>
+                        <th class="uk-text-right">Starts</th>
+                        <th class="uk-text-right">1m Commits</th>
+                        <th class="uk-text-right">Contributors</th>
+                    </tr>
+                </thead> 
+            </table> 
         </div>
         <center>
             <span class="uk-margin-xlarge-top" uk-spinner="ratio: 3" id="loader"></span>
