@@ -9,18 +9,20 @@
     <link rel="stylesheet" href="assets/css/style.css" />
 </head>
 
-<body class="">
-   
-    <div class=" uk-container uk-padding ">
-        <h3 class="uk-text-white">Top 100 Cryptocurrencies by Market Cap</h3>  
+<body>
+    <!-- container -->
+    <div class="uk-container uk-margin-medium-top uk-margin-medium-bottom">
+        <!-- title -->
+        <h3 class="uk-text-white">Top 100 Cryptocurrencies by Market Cap</h3>
+        <!-- menu tab -->
         <ul class="uk-tab-center" uk-tab="media: @s">
             <li class=""><a id="btn_price">Price Overview</a></li>
             <li class=""><a id="btn_return">Return Rates</a></li>
             <li class=""><a id="btn_community">Community</a></li>
         </ul>
+        <!-- table price overview -->
         <div class="uk-overflow-auto">
-            <!-- table of Price Overview -->
-            <table class="uk-table uk-table-small uk-table-divider uk-table-hover" id="list-price" style="display: block;" >
+            <table class="uk-table uk-table-small uk-table-divider uk-table-hover" id="list-price">
                 <thead>
                     <tr>
                         <th class="uk-table-shrink">#</th>
@@ -28,17 +30,17 @@
                         <th class="uk-width-small uk-text-right">Price</th>
                         <th class="uk-table-shrink uk-text-right">1h</th>
                         <th class="uk-table-shrink uk-text-right">24h</th>
-                        <th class="uk-text-right">7d</th>
+                        <th class="uk-text-right uk-width-small">7d</th>
                         <th class="uk-text-right">Volumen (24h)</th>
                         <th class="uk-text-right">Liquidity</th>
                         <th class="uk-text-right">MarketCap</th>
                     </tr>
-                </thead>               
-                
+                </thead>
             </table>
-            
-            <!-- table of Return rates -->
-            <table class="uk-table uk-table-small uk-table-divider uk-table-hover" id="list-return"  style="display: none;">
+        </div>
+        <!-- table return rates -->
+        <div class="uk-overflow-auto">
+            <table class="uk-table uk-table-small uk-table-divider uk-table-hover display-none" id="list-return">
                 <thead>
                     <tr>
                         <th class="uk-table-shrink">#</th>
@@ -49,12 +51,12 @@
                         <th class="uk-text-right">1q</th>
                         <th class="uk-text-right">1y</th>
                     </tr>
-                </thead>               
-                
-            </table> 
-            
-            <!-- table of Community -->
-            <table class="uk-table uk-table-small uk-table-divider uk-table-hover" id="list-community"  style="display: none;">
+                </thead>
+            </table>
+        </div>
+        <!-- table community -->
+        <div class="uk-overflow-auto">
+            <table class="uk-table uk-table-small uk-table-divider uk-table-hover display-none" id="list-community">
                 <thead>
                     <tr>
                         <th class="uk-table-shrink">#</th>
@@ -67,17 +69,18 @@
                         <th class="uk-text-right">1m Commits</th>
                         <th class="uk-text-right">Contributors</th>
                     </tr>
-                </thead> 
-            </table> 
+                </thead>
+            </table>
         </div>
+        <!-- loader -->
         <center>
             <span class="uk-margin-xlarge-top" uk-spinner="ratio: 3" id="loader"></span>
         </center>
-      
     </div>
-    <script src="assets/js/main.js "></script>
+    <!-- scripts -->
     <script src="assets/js/uikit.min.js "></script>
     <script src="assets/js/uikit-icons.min.js "></script>
+    <script src="assets/js/main.js "></script>
 </body>
 
 </html>
