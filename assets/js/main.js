@@ -11,7 +11,7 @@ const btn_community = document.getElementById("btn_community");
 const btn_ath = document.getElementById("btn_ath");
 
 /* Input search */
-const search = document.getElementById('input-search');
+// const search = document.getElementById('input-search');
 /* Load add event listeners */
 function loadEventListeners() {
     document.addEventListener("DOMContentLoaded", getData);
@@ -19,7 +19,7 @@ function loadEventListeners() {
     btn_return.addEventListener("click", tabReturn);
     btn_community.addEventListener("click", tabCommunity);
     btn_ath.addEventListener("click", tabAth);
-    search.addEventListener('keypress', findData);
+    // search.addEventListener('keypress', findData);
 }
 
 let dataGlobal = [];
@@ -66,6 +66,7 @@ function getData() {
             .then((response) => {
                 /* filter th array */
                 data = response.filter((elem) => elem.rank > 0 && elem.rank <= 100);
+                data.sort((a, b) => a.rank - b.rank);
                 /* validation */
                 if (data[0] == null) {
                     return;
@@ -126,7 +127,8 @@ function renderPrice(data) {
     try {
         /* tbody object */
         const body = document.createElement("tbody");
-        body.className = className = "font-color-gray";
+        body.id = "tbody-list-price";
+        body.className = "font-color-gray";
         data.forEach((element, index) => {
             body.innerHTML += `<tr>
                                 <td class="uk-table-shrink" id="countC">${element.rank}</td>
@@ -291,24 +293,38 @@ function renderAth(data) {
         console.log(error);
     }
 }
-
+/* order by */
+$("#position").click(function() {
+    $("#tbody-list-price").remove();
+    if ($("#position").val()) {
+        data.sort((a, b) => a.rank - b.rank);
+        $("#position").val(false);
+        console.log("if");
+    } else {
+        console.log("else");
+        data.sort((a, b) => b.rank - a.rank);
+        $("#position").val(true);
+    }
+    renderPrice(data);
+    console.log("hola");
+});
 /* Search data */
-function findData(){
+function findData() {
     const value = search.value;
     const find = [];
-    if(value !=""){        
+    if (value != "") {
         // for(const value of dataGlobal){
-            find.push(Contains(dataGlobal, value));
+        find.push(Contains(dataGlobal, value));
         // }
     }
-    console.log("DATA GLOBAL" , dataGlobal);
-    console.log("DATA FILTER" , find);
-    
+    console.log("DATA GLOBAL", dataGlobal);
+    console.log("DATA FILTER", find);
+
 }
 
 /* Compare Data */
-function Contains(elementos, texto) { 
+function Contains(elementos, texto) {
     let result = [];
-       elementos.forEach(a => { if (a.name.includes(texto)) result.push(a.textContent)})
+    elementos.forEach(a => { if (a.name.includes(texto)) result.push(a.textContent) })
     return result;
 }

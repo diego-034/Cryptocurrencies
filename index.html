@@ -15,21 +15,21 @@
         <!-- title -->
         <h3 class="uk-text-white">Top 100 Cryptocurrencies by Market Cap</h3>
         <!-- menu tab -->
-        
+
         <ul class="uk-tab-center" uk-tab="media: @s">
             <li class=""><a id="btn_price">Price Overview</a></li>
             <li class=""><a id="btn_return">Return Rates</a></li>
             <li class=""><a id="btn_community">Community</a></li>
             <li class=""><a id="btn_ath">All Time Hight</a></li>
-            <li><input type="uk-fieldset" placeholder="Enter value to find" id="input-search"></li>
-            <li><button class="uk-button uk-button-primary uk-button-small">Search</button></li>
+            <!-- <li><input type="uk-fieldset" class="uk-input" placeholder="Enter value to find" id="input-search"></li>
+            <li><button class="uk-button uk-button-primary uk-button-small">Search</button></li> -->
         </ul>
         <!-- table price overview -->
         <div class="uk-overflow-auto">
             <table class="uk-table uk-table-small uk-table-divider uk-table-hover" id="list-price">
                 <thead>
                     <tr>
-                        <th class="uk-table-shrink">#</th>
+                        <th class="uk-table-shrink" id="position" value="true">#</th>
                         <th class="uk-width-max">Name</th>
                         <th class="uk-width-small uk-text-right">Price</th>
                         <th class="uk-table-shrink uk-text-right">1h</th>
