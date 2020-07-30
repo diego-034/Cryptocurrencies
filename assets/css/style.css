@@ -21,3 +21,32 @@
 .display-none {
     display: none;
 }
+
+.coin-icon {
+    width: 20px;
+    min-width: 20px;
+    height: 20px;
+    display: inline-block;
+}
+
+.svg-icon {
+    height: 20px;
+    width: 110px;
+    display: inline-block;
+}
+
+.uk-width-max {
+    width: 200px;
+}
+
+.uk-width-small {
+    width: 100px;
+}
+
+.uk-width-medium {
+    width: 100px;
+}
+
+.display-inline {
+    display: inline;
+}

@@ -125,7 +125,8 @@ function renderPrice(data) {
         data.forEach((element, index) => {
             body.innerHTML += `<tr>
                                 <td class="uk-table-shrink" id="countC">${element.rank}</td>
-                                <td class="uk-width-small" id="nameC">
+                                <td class="uk-width-max" id="nameC">
+                                <img class="coin-icon" src="https://static2.coinpaprika.com/coin/${element.id}/logo-thumb.png"/>
                                      ${element.name +" " +element.symbol}
                                 </td>
                                 <td class="uk-width-small uk-text-right" id="priceC">
@@ -143,10 +144,11 @@ function renderPrice(data) {
                                     : "success")}">
                                     ${element.quotes.USD.percent_change_24h}%
                                 </td>
-                                <td class="uk-text-right uk-width-small uk-text-${(color =
+                                <td class=" uk-width-max  uk-text-${(color =
                                   element.quotes.USD.percent_change_7d < 0
                                     ? "danger"
                                     : "success")}">
+                                    <img class="svg-icon" src="https://graphs2.coinpaprika.com/currency/chart/${element.id}/7d/chart.svg"/>
                                     ${element.quotes.USD.percent_change_7d}%
                                 </td>
                                 <td class="uk-text-right">
@@ -173,28 +175,40 @@ function renderReturn(data) {
         data.forEach((element, index) => {
             body.innerHTML += `<tr>
                         <td class="uk-table-shrink">${element.rank}</td>
-                        <td class="uk-width-small" >
-                             ${element.name+" " +element.symbol}
+                        <td class="uk-width-max" >
+                        <img class="coin-icon" src="https://static2.coinpaprika.com/coin/${element.id}/logo-thumb.png"/>
+                        ${element.name +" " +element.symbol}
+                   </td>
                         </td>
                         <td class="uk-width-small uk-text-right">
                             $ ${format(element.quotes.USD.price)}
                         </td>                            
-                        <td class="uk-text-right uk-text-${(color =
+                        <td class="uk-width-max uk-text-${(color =
                             element.quotes.USD.percent_change_7d < 0
                               ? "danger"
                               : "success")}">
+                              <img class="svg-icon" src="https://graphs2.coinpaprika.com/currency/chart/${element.id}/7d/chart.svg"/>
+
                             ${element.quotes.USD.percent_change_7d}%
                         </td>
-                        <td class="uk-text-right uk-text-${(color =
+                        <td class="uk-width-max uk-text-${(color =
                             element.quotes.USD.percent_change_30d < 0
                               ? "danger"
                               : "success")}">
+                              <img class="svg-icon" src="https://graphs2.coinpaprika.com/currency/chart/${element.id}/30d/chart.svg"/>
                             ${element.quotes.USD.percent_change_30d}%
                         </td>
-                        <td class="uk-text-right uk-text-${(color =
+                        <td class="uk-width-max uk-text-${(color =
+                            element.quotes.USD.percent_change_30d < 0
+                              ? "danger"
+                              : "success")}">
+                              <img class="svg-icon" src="https://graphs2.coinpaprika.com/currency/chart/${element.id}/1q/chart.svg"/>
+                        </td>
+                        <td class="uk-width-max uk-text-${(color =
                             element.quotes.USD.percent_change_1y < 0
                               ? "danger"
                               : "success")}">
+                              <img class="svg-icon" src="https://graphs2.coinpaprika.com/currency/chart/${element.id}/1y/chart.svg"/>
                         $ ${element.quotes.USD.percent_change_1y} 
                         </td>
                     </tr>`;
@@ -214,8 +228,10 @@ function renderCommunity(data) {
         data.forEach((element, index) => {
             body.innerHTML += `<tr>
                                 <td class="uk-table-shrink">${element.rank}</td>
-                                <td class="uk-width-small">
-                                     ${element.name +" " +element.symbol}
+                                <td class="uk-width-small uk-width-max">
+                                <img class="coin-icon" src="https://static2.coinpaprika.com/coin/${element.id}/logo-thumb.png"/>
+                                ${element.name +" " +element.symbol}
+                           </td>
                                 </td>                           
                                 <td class="uk-width-small uk-text-right">
                                     $ ${format(element.quotes.USD.price)}
@@ -243,8 +259,10 @@ function renderAth(data) {
         data.forEach((element, index) => {
             body.innerHTML += `<tr>
                                 <td class="uk-table-shrink" id="countC">${element.rank}</td>
-                                <td class="uk-width-small" id="nameC">
-                                     ${element.name +" " +element.symbol}
+                                <td class="uk-width-max" id="nameC">
+                                <img class="coin-icon" src="https://static2.coinpaprika.com/coin/${element.id}/logo-thumb.png"/>
+                                ${element.name +" " +element.symbol}
+                           </td>
                                 </td>
                                 <td class="uk-width-small uk-text-right" id="priceC">
                                     $ ${format(element.quotes.USD.price)}
@@ -258,8 +276,8 @@ function renderAth(data) {
                                 <td class="uk-table-small uk-text-right ">
                                     ${(reponse = days(element.quotes.USD.ath_date,element.last_updated) < 1? "today":days(element.quotes.USD.ath_date,element.last_updated)+ " days ago")} 
                                 </td>
-                                <td class="uk-text-right uk-width-small">
-                                    ${element.quotes.USD.percent_from_price_ath}%
+                                <td class="uk-text-right">
+                                    ${element.quotes.USD.percent_from_price_ath}
                                 </td>
                             </tr>`;
         });
