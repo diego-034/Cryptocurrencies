@@ -50,3 +50,11 @@
 .display-inline {
     display: inline;
 }
+
+th:hover {
+    cursor: pointer;
+}
+
+body {
+    min-height: 100vh;
+}
