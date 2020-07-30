@@ -57,6 +57,8 @@ function tabAth() {
 
 /* globals variables */
 var data;
+var data2;
+
 
 /* request to API */
 function getData() {
@@ -78,6 +80,9 @@ function getData() {
                 renderReturn(data);
                 renderCommunity(data);
                 renderAth(data);
+                data2 = response.filter((elem) => elem.rank > 0 && elem.rank <= 100);
+                data2.sort((a, b) => b.rank - a.rank);
+
                 dataGlobal = data;
             })
             .catch((error) => {
@@ -297,16 +302,12 @@ function renderAth(data) {
 $("#position").click(function() {
     $("#tbody-list-price").remove();
     if ($("#position").val()) {
-        data.sort((a, b) => a.rank - b.rank);
         $("#position").val(false);
-        console.log("if");
+        renderPrice(data2);
     } else {
-        console.log("else");
-        data.sort((a, b) => b.rank - a.rank);
         $("#position").val(true);
+        renderPrice(data);
     }
-    renderPrice(data);
-    console.log("hola");
 });
 /* Search data */
 function findData() {
