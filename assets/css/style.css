@@ -14,6 +14,12 @@
     color: black;
 }
 
+.uk-table-hover-night tbody tr:hover,
+.uk-table-hover>tr:hover {
+    background: #585e61 !important;
+    color: #cfd8dc;
+}
+
 .uk-text-success {
     color: #43aa05 !important;
 }
@@ -51,8 +57,16 @@
     display: inline;
 }
 
-th:hover {
+.th:hover {
     cursor: pointer;
+    line-height: 1.1;
+    background: #cfd8dc;
+}
+
+.th-night:hover {
+    cursor: pointer;
+    line-height: 1.1;
+    background: #585e61;
 }
 
 body {

@@ -206,6 +206,10 @@ function theme(value) {
         $("body").addClass("uk-light uk-background-secondary");
         $("#theme").val(false);
         $("#theme").html("Day Mode");
+        $("#list-price").removeClass("uk-table-hover");
+        $("#list-price").addClass("uk-table-hover-night");
+        $("th").removeClass("th");
+        $("th").addClass("th-night");
     } else {
         $("body").removeClass("uk-light uk-background-secondary");
         $("#theme").val(true);
