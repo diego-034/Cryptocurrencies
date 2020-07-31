@@ -1,3 +1,8 @@
+function validateFlag(flag){
+  switch(flag){
+    case 1: renderPrice()
+  }
+}
 /* create tbody with price overview */
 function renderPrice(data) {
     try {
@@ -50,7 +55,7 @@ function renderPrice(data) {
                                 <td class="uk-width-max uk-text-${(color =
                                   element.quotes.USD.percent_change_30d < 0
                                     ? "danger"
-                                    : "success")}  th-return">
+                                    : "success")}  th-return display-none">
                                       <img class="svg-icon" src="https://graphs2.coinpaprika.com/currency/chart/${
                                         element.id
                                       }/30d/chart.svg"/>
@@ -59,7 +64,7 @@ function renderPrice(data) {
                                 <td class="uk-width-max uk-text-${(color =
                                   element.quotes.USD.percent_change_30d < 0
                                     ? "danger"
-                                    : "success")} th-return">
+                                    : "success")} th-return display-none">
                                       <img class="svg-icon" src="https://graphs2.coinpaprika.com/currency/chart/${
                                         element.id
                                       }/1q/chart.svg"/>
@@ -67,20 +72,20 @@ function renderPrice(data) {
                                 <td class="uk-width-max uk-text-${(color =
                                   element.quotes.USD.percent_change_1y < 0
                                     ? "danger"
-                                    : "success")} th-return">
+                                    : "success")} th-return display-none">
                                       <img class="svg-icon" src="https://graphs2.coinpaprika.com/currency/chart/${
                                         element.id
                                       }/1y/chart.svg"/>
                                 $ ${element.quotes.USD.percent_change_1y} 
                                 </td>
-                                <td class="uk-text-right th-community">...</td>
-                                <td class="uk-table-small uk-text-right th-ath">
+                                <td class="uk-text-right th-community display-none">...</td>
+                                <td class="uk-table-small uk-text-right th-ath display-none">
                                 $ ${format(element.quotes.USD.ath_price)}
                          </td>
-                         <td class="uk-table-small uk-text-right th-ath">
+                         <td class="uk-table-small uk-text-right th-ath display-none">
                              ${date(element.quotes.USD.ath_date)}
                          </td>
-                         <td class="uk-table-small uk-text-right th-ath">
+                         <td class="uk-table-small uk-text-right th-ath display-none">
                              ${(reponse =
                                days(
                                  element.quotes.USD.ath_date,
@@ -92,7 +97,7 @@ function renderPrice(data) {
                                      element.last_updated
                                    ) + " days ago")} 
                          </td>
-                         <td class="uk-text-right th-ath">
+                         <td class="uk-text-right th-ath display-none">
                              ${element.quotes.USD.percent_from_price_ath}
                          </td>
                             </tr>`;
@@ -103,7 +108,7 @@ function renderPrice(data) {
     }
 }
 
-
+/* dark mode */
 function theme(value) {
     if (value == "true") {
         $("body").addClass("uk-light uk-background-secondary");

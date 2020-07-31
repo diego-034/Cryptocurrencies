@@ -32,30 +32,51 @@ function tabPrice() {
     validate(".th-return");
     validate(".th-community");
     validate(".th-ath");
+    draw('.th-price')
+    
 }
 
 function tabReturn() {
-    validate(".th-price");
+    validate('.th-price');
     validate(".th-community");
     validate(".th-ath");
+    draw('.th-return')
 }
 
 function tabCommunity() {
+    validate('.th-price');
     validate(".th-return");
-    validate(".th-price");
     validate(".th-ath");
+    draw('.th-community')
+    
 }
 
 function tabAth() {
-    validate(".th-return");
+    validate('.th-price');
     validate(".th-community");
-    validate(".th-price");
+    validate(".th-return");
+    draw('.th-ath')
 }
 
 function validate(selector) {
-    let a = document.querySelectorAll(selector);
-    for (let i in a) {
-        a[i].style.display = "none";
+    try {
+        let th = document.querySelectorAll(selector);
+        for(var i=0;i<th.length;i++){
+        document.querySelectorAll(selector)[i].style.display = "none";        
+    }
+    } catch (error) {
+        console.log(error);
+    }
+    
+}
+function draw(selector){
+    try {
+        let th = document.querySelectorAll(selector);
+        for(var i=0;i<th.length;i++){
+            document.querySelectorAll(selector)[i].style.display = "table-cell";        
+        }
+    } catch (error) {
+        console.log(error);
     }
 }
 /* globals variables */
