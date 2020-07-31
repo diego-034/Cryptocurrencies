@@ -41,7 +41,6 @@ function renderPrice(data, tab) {
                                 <td class="uk-text-right  th-price">
                                     $ ${element.quotes.USD.volume_24h}
                                 </td>
-                                <td class="uk-text-right uk-background-primary  th-price">GRAPHIC</td>
                                 <td class="uk-text-right  th-price">
                                     $ ${element.quotes.USD.market_cap} 
                                 </td>
