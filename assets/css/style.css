@@ -69,6 +69,10 @@
     background: #585e61;
 }
 
+.th-display-none>th {
+    display: none;
+}
+
 body {
     min-height: 100vh;
 }

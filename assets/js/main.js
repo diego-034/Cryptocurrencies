@@ -71,7 +71,6 @@ function findData() {
     }
     console.log("DATA GLOBAL", dataGlobal);
     console.log("DATA FILTER", find);
-
 }
 
 /* Compare Data */
