@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     $("#position").val(true);
     $("#name").val(true);
     $("#price").val(true);
+    tab = "price";
 });
 
 /* Router functions */
