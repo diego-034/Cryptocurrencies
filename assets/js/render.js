@@ -1,10 +1,5 @@
-function validateFlag(flag){
-  switch(flag){
-    case 1: renderPrice()
-  }
-}
 /* create tbody with price overview */
-function renderPrice(data) {
+function renderPrice(data, tab) {
     try {
         /* tbody object */
         const body = document.createElement("tbody");
@@ -12,9 +7,7 @@ function renderPrice(data) {
         body.className = "font-color-gray";
         data.forEach((element, index) => {
             body.innerHTML += `<tr>
-                                <td class="uk-table-shrink">${
-                                  element.rank
-                                }</td>
+                                <td class="uk-table-shrink">${element.rank}</td>
                                 <td class="uk-width-max">
                                 <img class="coin-icon" src="https://static2.coinpaprika.com/coin/${
                                   element.id
@@ -55,7 +48,7 @@ function renderPrice(data) {
                                 <td class="uk-width-max uk-text-${(color =
                                   element.quotes.USD.percent_change_30d < 0
                                     ? "danger"
-                                    : "success")}  th-return display-none">
+                                    : "success")}  th-return">
                                       <img class="svg-icon" src="https://graphs2.coinpaprika.com/currency/chart/${
                                         element.id
                                       }/30d/chart.svg"/>
@@ -64,7 +57,7 @@ function renderPrice(data) {
                                 <td class="uk-width-max uk-text-${(color =
                                   element.quotes.USD.percent_change_30d < 0
                                     ? "danger"
-                                    : "success")} th-return display-none">
+                                    : "success")} th-return">
                                       <img class="svg-icon" src="https://graphs2.coinpaprika.com/currency/chart/${
                                         element.id
                                       }/1q/chart.svg"/>
@@ -72,20 +65,20 @@ function renderPrice(data) {
                                 <td class="uk-width-max uk-text-${(color =
                                   element.quotes.USD.percent_change_1y < 0
                                     ? "danger"
-                                    : "success")} th-return display-none">
+                                    : "success")} th-return">
                                       <img class="svg-icon" src="https://graphs2.coinpaprika.com/currency/chart/${
                                         element.id
                                       }/1y/chart.svg"/>
                                 $ ${element.quotes.USD.percent_change_1y} 
                                 </td>
-                                <td class="uk-text-right th-community display-none">...</td>
-                                <td class="uk-table-small uk-text-right th-ath display-none">
+                                <td class="uk-text-right th-community">...</td>
+                                <td class="uk-table-small uk-text-right th-ath">
                                 $ ${format(element.quotes.USD.ath_price)}
                          </td>
-                         <td class="uk-table-small uk-text-right th-ath display-none">
+                         <td class="uk-table-small uk-text-right th-ath">
                              ${date(element.quotes.USD.ath_date)}
                          </td>
-                         <td class="uk-table-small uk-text-right th-ath display-none">
+                         <td class="uk-table-small uk-text-right th-ath">
                              ${(reponse =
                                days(
                                  element.quotes.USD.ath_date,
@@ -97,12 +90,34 @@ function renderPrice(data) {
                                      element.last_updated
                                    ) + " days ago")} 
                          </td>
-                         <td class="uk-text-right th-ath display-none">
+                         <td class="uk-text-right th-ath">
                              ${element.quotes.USD.percent_from_price_ath}
                          </td>
                             </tr>`;
         });
         listPrice.appendChild(body);
+        switch (tab) {
+            case "community":
+                $(".th-ath").css("display", "none");
+                $(".th-price").css("display", "none");
+                $(".th-return").css("display", "none");
+                break;
+            case "return":
+                $(".th-ath").css("display", "none");
+                $(".th-community").css("display", "none");
+                $(".th-price").css("display", "none");
+                break;
+            case "ath":
+                $(".th-price").css("display", "none");
+                $(".th-community").css("display", "none");
+                $(".th-return").css("display", "none");
+                break;
+            case "price":
+                $(".th-ath").css("display", "none");
+                $(".th-community").css("display", "none");
+                $(".th-return").css("display", "none");
+                break;
+        }
     } catch (error) {
         console.log(error);
     }

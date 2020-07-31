@@ -10,8 +10,6 @@ const btn_return = document.getElementById("btn_return");
 const btn_community = document.getElementById("btn_community");
 const btn_ath = document.getElementById("btn_ath");
 
-/* Input search */
-// const search = document.getElementById('input-search');
 /* Load add event listeners */
 function loadEventListeners() {
     document.addEventListener("DOMContentLoaded", getData);
@@ -32,49 +30,45 @@ function tabPrice() {
     validate(".th-return");
     validate(".th-community");
     validate(".th-ath");
-    draw('.th-price')
-    
+    draw('.th-price');
+    tab = "price";
 }
 
 function tabReturn() {
     validate('.th-price');
     validate(".th-community");
     validate(".th-ath");
-    draw('.th-return')
+    draw('.th-return');
+    tab = "return";
 }
 
 function tabCommunity() {
     validate('.th-price');
     validate(".th-return");
     validate(".th-ath");
-    draw('.th-community')
-    
+    draw('.th-community');
+    tab = "community";
 }
 
 function tabAth() {
     validate('.th-price');
     validate(".th-community");
     validate(".th-return");
-    draw('.th-ath')
+    draw('.th-ath');
+    tab = "ath";
 }
-
+/* tabs */
 function validate(selector) {
     try {
-        let th = document.querySelectorAll(selector);
-        for(var i=0;i<th.length;i++){
-        document.querySelectorAll(selector)[i].style.display = "none";        
-    }
+        $(selector).css("display", "none");
     } catch (error) {
         console.log(error);
     }
-    
 }
-function draw(selector){
+
+function draw(selector) {
     try {
-        let th = document.querySelectorAll(selector);
-        for(var i=0;i<th.length;i++){
-            document.querySelectorAll(selector)[i].style.display = "table-cell";        
-        }
+        $(selector).css("display", "table-cell");
     } catch (error) {
         console.log(error);
     }
@@ -82,19 +76,19 @@ function draw(selector){
 /* globals variables */
 let data;
 let data2;
-let dataGlobal = [];
+let tab;
 
-/* order by */
+/* order by position */
 $("#position").click(function() {
     $("#tbody-list-price").remove();
     if ($("#position").val()) {
         $("#position").val(false);
         data2.sort((a, b) => a.rank - b.rank);
-        renderPrice(data2);
+        renderPrice(data2, tab);
     } else {
         $("#position").val(true);
         data.sort((a, b) => b.rank - a.rank);
-        renderPrice(data);
+        renderPrice(data, tab);
     }
 })
 
@@ -103,11 +97,11 @@ $("#name").click(function() {
     if ($("#name").val()) {
         $("#name").val(false);
         data2.sort((a, b) => a.name > b.name);
-        renderPrice(data2);
+        renderPrice(data2, tab);
     } else {
         $("#name").val(true);
         data.sort((a, b) => a.name < b.name);
-        renderPrice(data);
+        renderPrice(data, tab);
     }
 })
 
@@ -116,10 +110,10 @@ $("#price").click(function() {
     if ($("#price").val()) {
         $("#price").val(false);
         data2.sort((a, b) => a.quotes.USD.price - b.quotes.USD.price);
-        renderPrice(data2);
+        renderPrice(data2, tab);
     } else {
         $("#price").val(true);
         data.sort((a, b) => b.quotes.USD.price - a.quotes.USD.price);
-        renderPrice(data);
+        renderPrice(data, tab);
     }
 })

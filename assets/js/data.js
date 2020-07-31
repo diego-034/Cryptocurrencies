@@ -14,10 +14,9 @@ function getData() {
                 /* change display of loader */
                 document.getElementById("loader").style.display = "none";
                 /* call functions to render tables */
-                renderPrice(data);
+                tab = "price";
+                renderPrice(data, tab);
                 data2 = response.filter((elem) => elem.rank > 0 && elem.rank <= 100);
-
-                dataGlobal = data;
             })
             .catch((error) => {
                 console.log(error);
