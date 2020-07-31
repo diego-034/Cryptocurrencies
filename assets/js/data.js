@@ -15,11 +15,7 @@ function getData() {
                 document.getElementById("loader").style.display = "none";
                 /* call functions to render tables */
                 renderPrice(data);
-                renderReturn(data);
-                renderCommunity(data);
-                renderAth(data);
                 data2 = response.filter((elem) => elem.rank > 0 && elem.rank <= 100);
-                data2.sort((a, b) => b.rank - a.rank);
 
                 dataGlobal = data;
             })

@@ -20,6 +20,8 @@ function loadEventListeners() {
     btn_community.addEventListener("click", tabCommunity);
     btn_ath.addEventListener("click", tabAth);
     $("#position").val(true);
+    $("#name").val(true);
+    $("#price").val(true);
 }
 
 /* initialization  */
@@ -27,66 +29,76 @@ loadEventListeners();
 
 /* Router functions */
 function tabPrice() {
-    document.getElementById("list-price").style.display = "block";
-    document.getElementById("list-return").style.display = "none";
-    document.getElementById("list-community").style.display = "none";
-    document.getElementById("list-ath").style.display = "none";
+    validate(".th-return");
+    validate(".th-community");
+    validate(".th-ath");
 }
 
 function tabReturn() {
-    document.getElementById("list-return").style.display = "block";
-    document.getElementById("list-price").style.display = "none";
-    document.getElementById("list-community").style.display = "none";
-    document.getElementById("list-ath").style.display = "none";
+    validate(".th-price");
+    validate(".th-community");
+    validate(".th-ath");
 }
 
 function tabCommunity() {
-    document.getElementById("list-community").style.display = "block";
-    document.getElementById("list-return").style.display = "none";
-    document.getElementById("list-price").style.display = "none";
-    document.getElementById("list-ath").style.display = "none";
+    validate(".th-return");
+    validate(".th-price");
+    validate(".th-ath");
 }
 
 function tabAth() {
-    document.getElementById("list-ath").style.display = "block";
-    document.getElementById("list-return").style.display = "none";
-    document.getElementById("list-price").style.display = "none";
-    document.getElementById("list-community").style.display = "none";
+    validate(".th-return");
+    validate(".th-community");
+    validate(".th-price");
 }
 
+function validate(selector) {
+    let a = document.querySelectorAll(selector);
+    for (let i in a) {
+        a[i].style.display = "none";
+    }
+}
 /* globals variables */
 let data;
 let data2;
 let dataGlobal = [];
 
-
-/* Search data */
-function findData() {
-    const value = search.value;
-    const find = [];
-    if (value != "") {
-        // for(const value of dataGlobal){
-        find.push(Contains(dataGlobal, value));
-        // }
-    }
-    console.log("DATA GLOBAL", dataGlobal);
-    console.log("DATA FILTER", find);
-}
-
-/* Compare Data */
-function Contains(elementos, texto) {
-    let result = [];
-    elementos.forEach(a => { if (a.name.includes(texto)) result.push(a.textContent) })
-    return result;
-}
 /* order by */
 $("#position").click(function() {
     $("#tbody-list-price").remove();
     if ($("#position").val()) {
         $("#position").val(false);
+        data2.sort((a, b) => a.rank - b.rank);
         renderPrice(data2);
     } else {
         $("#position").val(true);
+        data.sort((a, b) => b.rank - a.rank);
+        renderPrice(data);
+    }
+})
+
+$("#name").click(function() {
+    $("#tbody-list-price").remove();
+    if ($("#name").val()) {
+        $("#name").val(false);
+        data2.sort((a, b) => a.name > b.name);
+        renderPrice(data2);
+    } else {
+        $("#name").val(true);
+        data.sort((a, b) => a.name < b.name);
+        renderPrice(data);
+    }
+})
+
+$("#price").click(function() {
+    $("#tbody-list-price").remove();
+    if ($("#price").val()) {
+        $("#price").val(false);
+        data2.sort((a, b) => a.quotes.USD.price - b.quotes.USD.price);
+        renderPrice(data2);
+    } else {
+        $("#price").val(true);
+        data.sort((a, b) => b.quotes.USD.price - a.quotes.USD.price);
         renderPrice(data);
     }
 })
