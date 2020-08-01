@@ -284,13 +284,17 @@ $("#fromAth").click(function() {
     /* order by ath days */
 $("#next100").click(function() {
     $("#tbody-list-price").remove();
-    next100 = allData.filter((elem) => elem.rank > 100 && elem.rank <= 200);
+    if (next100 == null) {
+        next100 = allData.filter((elem) => elem.rank > 100 && elem.rank <= 200);
+    }
     renderPrice(next100, tab);
-
+    $("#next100").css("display", "none");
+    $("#first100").css("display", "block");
 })
-
-$("#viewAll").click(function() {
+$("#first100").click(function() {
     $("#tbody-list-price").remove();
-    next100 = allData.filter((elem) => elem.rank > 100 && elem.rank <= 200);
-    renderPrice(next100, tab);
+    next100 = null;
+    renderPrice(first100, tab);
+    $("#next100").css("display", "block");
+    $("#first100").css("display", "none");
 })
