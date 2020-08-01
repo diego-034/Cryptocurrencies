@@ -4,9 +4,6 @@ const listPrice = document.getElementById("list-price");
 /* Load add event listeners */
 document.addEventListener('DOMContentLoaded', function() {
     getData();
-    $("#position").val(true);
-    $("#name").val(true);
-    $("#price").val(true);
     tab = "price";
 });
 
@@ -43,6 +40,8 @@ $("#btn_ath").click(function() {
 let data;
 let data2;
 let tab;
+let allData;
+let next100;
 
 /* order by position */
 $("#position").click(function() {
@@ -216,14 +215,30 @@ $("#athDays").click(function() {
     })
     /* order by ath days */
 $("#fromAth").click(function() {
+        $("#tbody-list-price").remove();
+        if (next100 != null) {
+            data2 = next100
+        }
+        if ($("#fromAth").val()) {
+            $("#fromAth").val(false);
+            data2.sort((a, b) => a.quotes.USD.percent_from_price_ath - b.quotes.USD.percent_from_price_ath);
+            renderPrice(data2, tab);
+        } else {
+            $("#fromAth").val(true);
+            data.sort((a, b) => b.quotes.USD.percent_from_price_ath - a.quotes.USD.percent_from_price_ath);
+            renderPrice(data, tab);
+        }
+    })
+    /* order by ath days */
+$("#next100").click(function() {
     $("#tbody-list-price").remove();
-    if ($("#fromAth").val()) {
-        $("#fromAth").val(false);
-        data2.sort((a, b) => a.quotes.USD.percent_from_price_ath - b.quotes.USD.percent_from_price_ath);
-        renderPrice(data2, tab);
-    } else {
-        $("#fromAth").val(true);
-        data.sort((a, b) => b.quotes.USD.percent_from_price_ath - a.quotes.USD.percent_from_price_ath);
-        renderPrice(data, tab);
-    }
+    list = allData.filter((elem) => elem.rank > 100 && elem.rank <= 200);
+    renderPrice(list, tab);
+
+})
+
+$("#viewAll").click(function() {
+    $("#tbody-list-price").remove();
+    next100 = allData.filter((elem) => elem.rank > 100 && elem.rank <= 200);
+    renderPrice(next100, tab);
 })
