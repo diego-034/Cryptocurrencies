@@ -1,5 +1,5 @@
-/* create tbody with price overview */
-function renderPrice(data, tab) {
+/* create tbody */
+function renderView(data, tab) {
     try {
         /* tbody object */
         const body = document.createElement("tbody");
@@ -117,6 +117,14 @@ function renderPrice(data, tab) {
                 $(".th-return").css("display", "none");
                 break;
         }
+        console.log(allData);
+
+        let response = marketCapFilter(allData);
+        console.log(response);
+        response = volume24hFilter(allData);
+        console.log(response);
+        response = priceFilter(allData);
+        console.log(response);
     } catch (error) {
         console.log(error);
     }
@@ -132,6 +140,7 @@ function theme(value) {
         $("#list-price").addClass("uk-table-hover-night");
         $("th").removeClass("th");
         $("th").addClass("th-night");
+        $(".uk-card-default").css("background-color", "black");
     } else {
         $("body").removeClass("uk-light uk-background-secondary");
         $("#theme").val(true);
@@ -140,5 +149,6 @@ function theme(value) {
         $("#list-price").addClass("uk-table-hover");
         $("th").removeClass("th-night");
         $("th").addClass("th");
+        $(".uk-card-default").css("background-color", "white");
     }
 }

@@ -41,6 +41,8 @@ let first100;
 let tab;
 let allData;
 let next100;
+let marketcap;
+let volumen24;
 /* order by position */
 $("#position").click(function() {
         var data = first100;
@@ -51,11 +53,11 @@ $("#position").click(function() {
         if ($("#position").val()) {
             $("#position").val(false);
             data.sort((a, b) => a.rank - b.rank);
-            renderPrice(data, tab);
+            renderView(data, tab);
         } else {
             $("#position").val(true);
             data.sort((a, b) => b.rank - a.rank);
-            renderPrice(data, tab);
+            renderView(data, tab);
         }
     })
     /* order by name */
@@ -68,11 +70,11 @@ $("#name").click(function() {
         if ($("#name").val()) {
             $("#name").val(false);
             data.sort((a, b) => a.name > b.name);
-            renderPrice(data, tab);
+            renderView(data, tab);
         } else {
             $("#name").val(true);
             data.sort((a, b) => a.name < b.name);
-            renderPrice(data, tab);
+            renderView(data, tab);
         }
     })
     /* order by price */
@@ -85,11 +87,11 @@ $("#price").click(function() {
     if ($("#price").val()) {
         $("#price").val(false);
         data.sort((a, b) => a.quotes.USD.price - b.quotes.USD.price);
-        renderPrice(data, tab);
+        renderView(data, tab);
     } else {
         $("#price").val(true);
         data.sort((a, b) => b.quotes.USD.price - a.quotes.USD.price);
-        renderPrice(data, tab);
+        renderView(data, tab);
     }
 })
 
@@ -103,11 +105,11 @@ $("#1h").click(function() {
         if ($("#1h").val()) {
             $("#1h").val(false);
             data.sort((a, b) => a.quotes.USD.percent_change_1h - b.quotes.USD.percent_change_1h);
-            renderPrice(data, tab);
+            renderView(data, tab);
         } else {
             $("#1h").val(true);
             data.sort((a, b) => b.quotes.USD.percent_change_1h - a.quotes.USD.percent_change_1h);
-            renderPrice(data, tab);
+            renderView(data, tab);
         }
     })
     /* order by 24h */
@@ -120,11 +122,11 @@ $("#24h").click(function() {
         if ($("#24h").val()) {
             $("#24h").val(false);
             data.sort((a, b) => a.quotes.USD.percent_change_24h - b.quotes.USD.percent_change_24h);
-            renderPrice(data, tab);
+            renderView(data, tab);
         } else {
             $("#24h").val(true);
             data.sort((a, b) => b.quotes.USD.percent_change_24h - a.quotes.USD.percent_change_24h);
-            renderPrice(data, tab);
+            renderView(data, tab);
         }
     })
     /* order by 7d */
@@ -137,11 +139,11 @@ $("#7d").click(function() {
         if ($("#7d").val()) {
             $("#7d").val(false);
             data.sort((a, b) => a.quotes.USD.percent_change_7d - b.quotes.USD.percent_change_7d);
-            renderPrice(data, tab);
+            renderView(data, tab);
         } else {
             $("#7d").val(true);
             data.sort((a, b) => b.quotes.USD.percent_change_7d - a.quotes.USD.percent_change_7d);
-            renderPrice(data, tab);
+            renderView(data, tab);
         }
     })
     /* order by volumen 24 */
@@ -154,11 +156,11 @@ $("#volumen24").click(function() {
         if ($("#volumen24").val()) {
             $("#volumen24").val(false);
             data.sort((a, b) => a.quotes.USD.volume_24h - b.quotes.USD.volume_24h);
-            renderPrice(data, tab);
+            renderView(data, tab);
         } else {
             $("#volumen24").val(true);
             data.sort((a, b) => b.quotes.USD.volume_24h - a.quotes.USD.volume_24h);
-            renderPrice(data, tab);
+            renderView(data, tab);
         }
     })
     /* order by marketcap */
@@ -171,11 +173,11 @@ $("#marketcap").click(function() {
         if ($("#marketcap").val()) {
             $("#marketcap").val(false);
             data.sort((a, b) => a.quotes.USD.market_cap - b.quotes.USD.market_cap);
-            renderPrice(data, tab);
+            renderView(data, tab);
         } else {
             $("#marketcap").val(true);
             data.sort((a, b) => b.quotes.USD.market_cap - a.quotes.USD.market_cap);
-            renderPrice(data, tab);
+            renderView(data, tab);
         }
     })
     /* order by 30d */
@@ -188,11 +190,11 @@ $("#30d").click(function() {
         if ($("#30d").val()) {
             $("#30d").val(false);
             data.sort((a, b) => a.quotes.USD.percent_change_30d - b.quotes.USD.percent_change_30d);
-            renderPrice(data, tab);
+            renderView(data, tab);
         } else {
             $("#30d").val(true);
             data.sort((a, b) => b.quotes.USD.percent_change_30d - a.quotes.USD.percent_change_30d);
-            renderPrice(data, tab);
+            renderView(data, tab);
         }
     })
     /* order by 1y */
@@ -205,11 +207,11 @@ $("#1y").click(function() {
         if ($("#1y").val()) {
             $("#1y").val(false);
             data.sort((a, b) => a.quotes.USD.percent_change_1y - b.quotes.USD.percent_change_1y);
-            renderPrice(data, tab);
+            renderView(data, tab);
         } else {
             $("#1y").val(true);
             data.sort((a, b) => b.quotes.USD.percent_change_1y - a.quotes.USD.percent_change_1y);
-            renderPrice(data, tab);
+            renderView(data, tab);
         }
     })
     /* order by ath */
@@ -222,11 +224,11 @@ $("#ath").click(function() {
         if ($("#ath").val()) {
             $("#ath").val(false);
             data.sort((a, b) => a.quotes.USD.ath_price - b.quotes.USD.ath_price);
-            renderPrice(data, tab);
+            renderView(data, tab);
         } else {
             $("#ath").val(true);
             data.sort((a, b) => b.quotes.USD.ath_price - a.quotes.USD.ath_price);
-            renderPrice(data, tab);
+            renderView(data, tab);
         }
     })
     /* order by ath date */
@@ -239,11 +241,11 @@ $("#athDate").click(function() {
         if ($("#athDate").val()) {
             $("#athDate").val(false);
             data.sort((a, b) => new Date(a.quotes.USD.ath_date) - new Date(b.quotes.USD.ath_date));
-            renderPrice(data, tab);
+            renderView(data, tab);
         } else {
             $("#athDate").val(true);
             data.sort((a, b) => new Date(b.quotes.USD.ath_date) - new Date(a.quotes.USD.ath_date));
-            renderPrice(data, tab);
+            renderView(data, tab);
         }
     })
     /* order by ath days */
@@ -256,11 +258,11 @@ $("#athDays").click(function() {
         if ($("#athDays").val()) {
             $("#athDays").val(false);
             data.sort((a, b) => new Date(a.quotes.USD.ath_date) - new Date(b.quotes.USD.ath_date));
-            renderPrice(data, tab);
+            renderView(data, tab);
         } else {
             $("#athDays").val(true);
             data.sort((a, b) => new Date(b.quotes.USD.ath_date) - new Date(a.quotes.USD.ath_date));
-            renderPrice(data, tab);
+            renderView(data, tab);
         }
     })
     /* order by ath days */
@@ -273,11 +275,11 @@ $("#fromAth").click(function() {
         if ($("#fromAth").val()) {
             $("#fromAth").val(false);
             data.sort((a, b) => a.quotes.USD.percent_from_price_ath - b.quotes.USD.percent_from_price_ath);
-            renderPrice(data, tab);
+            renderView(data, tab);
         } else {
             $("#fromAth").val(true);
             data.sort((a, b) => b.quotes.USD.percent_from_price_ath - a.quotes.USD.percent_from_price_ath);
-            renderPrice(data, tab);
+            renderView(data, tab);
         }
     })
     /* order by ath days */
@@ -286,14 +288,14 @@ $("#next100").click(function() {
     if (next100 == null) {
         next100 = allData.filter((elem) => elem.rank > 100 && elem.rank <= 200);
     }
-    renderPrice(next100, tab);
+    renderView(next100, tab);
     $("#next100").css("display", "none");
     $("#first100").css("display", "block");
 })
 $("#first100").click(function() {
     $("#tbody-list-price").remove();
     next100 = null;
-    renderPrice(first100, tab);
+    renderView(first100, tab);
     $("#next100").css("display", "block");
     $("#first100").css("display", "none");
 })
