@@ -1,6 +1,3 @@
-/* tables */
-const listPrice = document.getElementById("list-price");
-
 /* Load add event listeners */
 document.addEventListener('DOMContentLoaded', function() {
     getData();
@@ -39,17 +36,23 @@ $("#btn_ath").click(function() {
 /* globals variables */
 let first100;
 let tab;
+let filter;
 let allData;
 let next100;
-let marketcap;
-let volumen24;
+let flMarketcap = {};
+let flVolumen = {};
+let flPrice = {};
 /* order by position */
 $("#position").click(function() {
         var data = first100;
+        if (filter != null) {
+            data = filter;
+            console.log(filter);
+        }
         if (next100 != null) {
             data = next100;
         }
-        $("#tbody-list-price").remove();
+        $("tbody>tr").remove();
         if ($("#position").val()) {
             $("#position").val(false);
             data.sort((a, b) => a.rank - b.rank);
@@ -63,10 +66,14 @@ $("#position").click(function() {
     /* order by name */
 $("#name").click(function() {
         var data = first100;
+        if (filter != null) {
+            data = filter;
+            console.log(filter);
+        }
         if (next100 != null) {
             data = next100;
         }
-        $("#tbody-list-price").remove();
+        $("tbody>tr").remove();
         if ($("#name").val()) {
             $("#name").val(false);
             data.sort((a, b) => a.name > b.name);
@@ -80,10 +87,14 @@ $("#name").click(function() {
     /* order by price */
 $("#price").click(function() {
     var data = first100;
+    if (filter != null) {
+        data = filter;
+        console.log(filter);
+    }
     if (next100 != null) {
         data = next100;
     }
-    $("#tbody-list-price").remove();
+    $("tbody>tr").remove();
     if ($("#price").val()) {
         $("#price").val(false);
         data.sort((a, b) => a.quotes.USD.price - b.quotes.USD.price);
@@ -98,10 +109,14 @@ $("#price").click(function() {
 /* order by h1 */
 $("#1h").click(function() {
         var data = first100;
+        if (filter != null) {
+            data = filter;
+            console.log(filter);
+        }
         if (next100 != null) {
             data = next100;
         }
-        $("#tbody-list-price").remove();
+        $("tbody>tr").remove();
         if ($("#1h").val()) {
             $("#1h").val(false);
             data.sort((a, b) => a.quotes.USD.percent_change_1h - b.quotes.USD.percent_change_1h);
@@ -115,10 +130,14 @@ $("#1h").click(function() {
     /* order by 24h */
 $("#24h").click(function() {
         var data = first100;
+        if (filter != null) {
+            data = filter;
+            console.log(filter);
+        }
         if (next100 != null) {
             data = next100;
         }
-        $("#tbody-list-price").remove();
+        $("tbody>tr").remove();
         if ($("#24h").val()) {
             $("#24h").val(false);
             data.sort((a, b) => a.quotes.USD.percent_change_24h - b.quotes.USD.percent_change_24h);
@@ -132,10 +151,14 @@ $("#24h").click(function() {
     /* order by 7d */
 $("#7d").click(function() {
         var data = first100;
+        if (filter != null) {
+            data = filter;
+            console.log(filter);
+        }
         if (next100 != null) {
             data = next100;
         }
-        $("#tbody-list-price").remove();
+        $("tbody>tr").remove();
         if ($("#7d").val()) {
             $("#7d").val(false);
             data.sort((a, b) => a.quotes.USD.percent_change_7d - b.quotes.USD.percent_change_7d);
@@ -149,10 +172,14 @@ $("#7d").click(function() {
     /* order by volumen 24 */
 $("#volumen24").click(function() {
         var data = first100;
+        if (filter != null) {
+            data = filter;
+            console.log(filter);
+        }
         if (next100 != null) {
             data = next100;
         }
-        $("#tbody-list-price").remove();
+        $("tbody>tr").remove();
         if ($("#volumen24").val()) {
             $("#volumen24").val(false);
             data.sort((a, b) => a.quotes.USD.volume_24h - b.quotes.USD.volume_24h);
@@ -163,13 +190,17 @@ $("#volumen24").click(function() {
             renderView(data, tab);
         }
     })
-    /* order by marketcap */
+    /* order by fl */
 $("#marketcap").click(function() {
         var data = first100;
+        if (filter != null) {
+            data = filter;
+            console.log(filter);
+        }
         if (next100 != null) {
             data = next100;
         }
-        $("#tbody-list-price").remove();
+        $("tbody>tr").remove();
         if ($("#marketcap").val()) {
             $("#marketcap").val(false);
             data.sort((a, b) => a.quotes.USD.market_cap - b.quotes.USD.market_cap);
@@ -183,10 +214,14 @@ $("#marketcap").click(function() {
     /* order by 30d */
 $("#30d").click(function() {
         var data = first100;
+        if (filter != null) {
+            data = filter;
+            console.log(filter);
+        }
         if (next100 != null) {
             data = next100;
         }
-        $("#tbody-list-price").remove();
+        $("tbody>tr").remove();
         if ($("#30d").val()) {
             $("#30d").val(false);
             data.sort((a, b) => a.quotes.USD.percent_change_30d - b.quotes.USD.percent_change_30d);
@@ -200,10 +235,14 @@ $("#30d").click(function() {
     /* order by 1y */
 $("#1y").click(function() {
         var data = first100;
+        if (filter != null) {
+            data = filter;
+            console.log(filter);
+        }
         if (next100 != null) {
             data = next100;
         }
-        $("#tbody-list-price").remove();
+        $("tbody>tr").remove();
         if ($("#1y").val()) {
             $("#1y").val(false);
             data.sort((a, b) => a.quotes.USD.percent_change_1y - b.quotes.USD.percent_change_1y);
@@ -217,10 +256,14 @@ $("#1y").click(function() {
     /* order by ath */
 $("#ath").click(function() {
         var data = first100;
+        if (filter != null) {
+            data = filter;
+            console.log(filter);
+        }
         if (next100 != null) {
             data = next100;
         }
-        $("#tbody-list-price").remove();
+        $("tbody>tr").remove();
         if ($("#ath").val()) {
             $("#ath").val(false);
             data.sort((a, b) => a.quotes.USD.ath_price - b.quotes.USD.ath_price);
@@ -234,10 +277,14 @@ $("#ath").click(function() {
     /* order by ath date */
 $("#athDate").click(function() {
         var data = first100;
+        if (filter != null) {
+            data = filter;
+            console.log(filter);
+        }
         if (next100 != null) {
             data = next100;
         }
-        $("#tbody-list-price").remove();
+        $("tbody>tr").remove();
         if ($("#athDate").val()) {
             $("#athDate").val(false);
             data.sort((a, b) => new Date(a.quotes.USD.ath_date) - new Date(b.quotes.USD.ath_date));
@@ -251,10 +298,14 @@ $("#athDate").click(function() {
     /* order by ath days */
 $("#athDays").click(function() {
         var data = first100;
+        if (filter != null) {
+            data = filter;
+            console.log(filter);
+        }
         if (next100 != null) {
             data = next100;
         }
-        $("#tbody-list-price").remove();
+        $("tbody>tr").remove();
         if ($("#athDays").val()) {
             $("#athDays").val(false);
             data.sort((a, b) => new Date(a.quotes.USD.ath_date) - new Date(b.quotes.USD.ath_date));
@@ -268,10 +319,14 @@ $("#athDays").click(function() {
     /* order by ath days */
 $("#fromAth").click(function() {
         var data = first100;
+        if (filter != null) {
+            data = filter;
+            console.log(filter);
+        }
         if (next100 != null) {
             data = next100;
         }
-        $("#tbody-list-price").remove();
+        $("tbody>tr").remove();
         if ($("#fromAth").val()) {
             $("#fromAth").val(false);
             data.sort((a, b) => a.quotes.USD.percent_from_price_ath - b.quotes.USD.percent_from_price_ath);
@@ -284,7 +339,8 @@ $("#fromAth").click(function() {
     })
     /* order by ath days */
 $("#next100").click(function() {
-    $("#tbody-list-price").remove();
+    filter = null;
+    $("tbody>tr").remove();
     if (next100 == null) {
         next100 = allData.filter((elem) => elem.rank > 100 && elem.rank <= 200);
     }
@@ -293,9 +349,180 @@ $("#next100").click(function() {
     $("#first100").css("display", "block");
 })
 $("#first100").click(function() {
-    $("#tbody-list-price").remove();
-    next100 = null;
-    renderView(first100, tab);
-    $("#next100").css("display", "block");
-    $("#first100").css("display", "none");
+        $("tbody>tr").remove();
+        next100 = null;
+        filter = null;
+        renderView(first100, tab);
+        $("#next100").css("display", "block");
+        $("#first100").css("display", "none");
+    })
+    /* filter Market Cap */
+$("#fl-m-1b").click(function() {
+    $("tbody>tr").remove();
+    renderView(flMarketcap.billionMore, tab);
+    filter = flMarketcap.billionMore;
+})
+$("#fl-m-100-1m").click(function() {
+    $("tbody>tr").remove();
+    let data = [];
+    for (let i = 0; i < 35; i++) {
+        data.push(flMarketcap.hundredThousandToMillion[i]);
+    }
+    renderView(data, tab);
+    filter = data;
+})
+$("#fl-m-10-100m").click(function() {
+    $("tbody>tr").remove();
+    let data = [];
+    for (let i = 0; i < 35; i++) {
+        data.push(flMarketcap.millionToMillions[i]);
+    }
+    filter = data;
+    renderView(data, tab);
+})
+$("#fl-m-1-10m").click(function() {
+    $("tbody>tr").remove();
+    let data = [];
+    for (let i = 0; i < 35; i++) {
+        data.push(flMarketcap.millionsToBillions[i]);
+    }
+    filter = data;
+    renderView(data, tab);
+})
+$("#fl-m-100k-1m").click(function() {
+    $("tbody>tr").remove();
+    let data = [];
+    for (let i = 0; i < 35; i++) {
+        data.push(flMarketcap.millionsToMillions[i]);
+    }
+    filter = data;
+    renderView(data, tab);
+})
+$("#fl-m-0-100k").click(function() {
+    $("tbody>tr").remove();
+    let data = [];
+    for (let i = 0; i < 35; i++) {
+        data.push(flMarketcap.zeroToHundredThousand[i]);
+    }
+    filter = data;
+    renderView(data, tab);
+})
+$("#fl-m-all").click(function() {
+        $("tbody>tr").remove();
+        let data = [];
+        for (let i = 0; i < 100; i++) {
+            data.push(flMarketcap.all[i]);
+        }
+        filter = data;
+        renderView(data, tab);
+    })
+    /* filter volumen */
+$("#fl-v-10").click(function() {
+    $("tbody>tr").remove();
+    let data = [];
+    for (let i = 0; i < 35; i++) {
+        data.push(flVolumen.moreTenMillions[i]);
+    }
+    filter = data;
+    renderView(data, tab);
+})
+$("#fl-v-1").click(function() {
+    $("tbody>tr").remove();
+    let data = [];
+    for (let i = 0; i < 35; i++) {
+        data.push(flVolumen.moreAMillion[i]);
+    }
+    filter = data;
+    renderView(data, tab);
+})
+$("#fl-v-100k").click(function() {
+    $("tbody>tr").remove();
+    let data = [];
+    for (let i = 0; i < 35; i++) {
+        data.push(flVolumen.moreOneHundredThousand[i]);
+    }
+    filter = data;
+    renderView(data, tab);
+})
+$("#fl-v-10k").click(function() {
+    $("tbody>tr").remove();
+    let data = [];
+    for (let i = 0; i < 35; i++) {
+        data.push(flVolumen.moreTenThousand[i]);
+    }
+    filter = data;
+    renderView(data, tab);
+})
+$("#fl-v-1k").click(function() {
+    $("tbody>tr").remove();
+    let data = [];
+    for (let i = 0; i < 35; i++) {
+        data.push(flVolumen.moreOneThousand[i]);
+    }
+    filter = data;
+    renderView(data, tab);
+})
+$("#fl-v-all").click(function() {
+        $("tbody>tr").remove();
+        let data = [];
+        for (let i = 0; i < 100; i++) {
+            data.push(flVolumen.all[i]);
+        }
+        filter = data;
+        renderView(data, tab);
+    })
+    /* filter price */
+$("#fl-p-m-100").click(function() {
+    $("tbody>tr").remove();
+    let data = [];
+    for (let i = 0; i < 35; i++) {
+        data.push(flPrice.moreOneHundred[i]);
+    }
+    filter = data;
+    renderView(data, tab);
+})
+$("#fl-p-m-1-100").click(function() {
+    $("tbody>tr").remove();
+    let data = [];
+    for (let i = 0; i < 35; i++) {
+        data.push(flPrice.between1and100[i]);
+    }
+    filter = data;
+    renderView(data, tab);
+})
+$("#fl-p-m-0-3").click(function() {
+    $("tbody>tr").remove();
+    let data = [];
+    for (let i = 0; i < 35; i++) {
+        data.push(flPrice.between0_01and1_00[i]);
+    }
+    filter = data;
+    renderView(data, tab);
+})
+$("#fl-p-m-0-2").click(function() {
+    $("tbody>tr").remove();
+    let data = [];
+    for (let i = 0; i < 35; i++) {
+        data.push(flPrice.between0_0001and0_01[i]);
+    }
+    filter = data;
+    renderView(data, tab);
+})
+$("#fl-p-m-0-1").click(function() {
+    $("tbody>tr").remove();
+    let data = [];
+    for (let i = 0; i < 35; i++) {
+        data.push(flPrice.betweenZeroand0_0001[i]);
+    }
+    filter = data;
+    renderView(data, tab);
+})
+$("#fl-p-m-all").click(function() {
+    $("tbody>tr").remove();
+    let data = [];
+    for (let i = 0; i < 100; i++) {
+        data.push(flPrice.all[i]);
+    }
+    filter = data;
+    renderView(data, tab);
 })

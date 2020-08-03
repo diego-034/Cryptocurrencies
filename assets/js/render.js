@@ -1,12 +1,10 @@
-/* create tbody */
+/* render view */
 function renderView(data, tab) {
     try {
-        /* tbody object */
-        const body = document.createElement("tbody");
-        body.id = "tbody-list-price";
-        body.className = "font-color-gray";
+        /* tr with data */
+        let tr;
         data.forEach((element, index) => {
-            body.innerHTML += `<tr>
+            tr += `<tr>
                                 <td class="uk-table-shrink">${element.rank}</td>
                                 <td class="uk-width-max">
                                 <img class="coin-icon" src="https://static2.coinpaprika.com/coin/${
@@ -94,7 +92,7 @@ function renderView(data, tab) {
                          </td>
                             </tr>`;
         });
-        listPrice.appendChild(body);
+        $("#tbody-list-price").append(tr);
         switch (tab) {
             case "community":
                 $(".th-ath").css("display", "none");
@@ -117,14 +115,6 @@ function renderView(data, tab) {
                 $(".th-return").css("display", "none");
                 break;
         }
-        console.log(allData);
-
-        let response = marketCapFilter(allData);
-        console.log(response);
-        response = volume24hFilter(allData);
-        console.log(response);
-        response = priceFilter(allData);
-        console.log(response);
     } catch (error) {
         console.log(error);
     }

@@ -27,14 +27,13 @@
         <div class="uk-width-large" uk-drop>
             <div class="uk-card uk-card-body uk-card-default">
                 <div class="uk-drop-grid uk-child-width-1-2@m" uk-grid>
-                    <a href="">All</a>
-                    <a href="">$1 Billion+ </a>
-                    <a href="">$100 Millions - $1 Billion </a>
-                    <a href="">$10 Millions - $100 Millions </a>
-                    <a href="">$1 Million - $10 Millions </a>
-                    <a href="">$100k - $1 Million </a>
-                    <a href="">$0 - $100k </a>
-
+                    <a id="fl-m-all">All</a>
+                    <a id="fl-m-1b">$1 Billion+ </a>
+                    <a id="fl-m-100-1m">$100 Millions - $1 Billion </a>
+                    <a id="fl-m-10-100m">$10 Millions - $100 Millions </a>
+                    <a id="fl-m-1-10m">$1 Million - $10 Millions </a>
+                    <a id="fl-m-100k-1m">$100k - $1 Million </a>
+                    <a id="fl-m-0-100k">$0 - $100k </a>
                 </div>
             </div>
         </div>
@@ -43,12 +42,12 @@
         <div class="uk-width-large" uk-drop>
             <div class="uk-card uk-card-body uk-card-default">
                 <div class="uk-drop-grid uk-child-width-1-2@m" uk-grid>
-                    <a href="">All (2418)</a>
-                    <a href="">$10 Million+ (86)</a>
-                    <a href="">$1 Million+ (282)</a>
-                    <a href="">$100k+ (606)</a>
-                    <a href="">$10k+ (953)</a>
-                    <a href="">$1k+ (1319)</a>
+                    <a id="fl-v-all">All (2418)</a>
+                    <a id="fl-v-10">$10 Million+ (86)</a>
+                    <a id="fl-v-1">$1 Million+ (282)</a>
+                    <a id="fl-v-100k">$100k+ (606)</a>
+                    <a id="fl-v-10k">$10k+ (953)</a>
+                    <a id="fl-v-1k">$1k+ (1319)</a>
                 </div>
             </div>
         </div>
@@ -58,12 +57,12 @@
         <div class="uk-width-large" uk-drop>
             <div class="uk-card uk-card-body uk-card-default">
                 <div class="uk-drop-grid uk-child-width-1-2@m" uk-grid>
-                    <a href="">All (2418)</a>
-                    <a href="">$100+ (39)</a>
-                    <a href="">$1 - $100 (159)</a>
-                    <a href="">$0.01 - $1.00 (845)</a>
-                    <a href="">$0.0001 - $0.01 (1090)</a>
-                    <a href="">$0 - $0.0001 (285)</a>
+                    <a id="fl-p-m-all">All (2418)</a>
+                    <a id="fl-p-m-100">$100+ (39)</a>
+                    <a id="fl-p-m-1-100">$1 - $100 (159)</a>
+                    <a id="fl-p-m-0-3">$0.01 - $1.00 (845)</a>
+                    <a id="fl-p-m-0-2">$0.0001 - $0.01 (1090)</a>
+                    <a id="fl-p-m-0-1">$0 - $0.0001 (285)</a>
                 </div>
             </div>
         </div>
@@ -102,6 +101,7 @@
                         <th class="uk-text-right th th-ath display-none" id="toAth">% to ATH</th>
                     </tr>
                 </thead>
+                <tbody id="tbody-list-price" class="font-color-gray"></tbody>
             </table>
         </div>
         <!-- loader -->

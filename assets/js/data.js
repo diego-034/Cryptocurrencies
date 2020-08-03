@@ -18,11 +18,19 @@ function getData() {
                 document.getElementById("loader").style.display = "none";
                 /* call functions to render tables */
                 renderView(first100, tab);
+                /* get filter data */
+                flMarketcap = marketCapFilter(allData);
+                console.log(flMarketcap);
+                flVolumen = volume24hFilter(allData);
+                console.log(flVolumen);
+                flPrice = priceFilter(allData);
+                console.log(flPrice);
 
             })
             .catch((error) => {
                 console.log(error);
             });
+
     } catch (error) {
         console.log(error);
     }
