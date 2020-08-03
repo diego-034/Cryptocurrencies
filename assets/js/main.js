@@ -41,7 +41,6 @@ let first100;
 let tab;
 let allData;
 let next100;
-
 /* order by position */
 $("#position").click(function() {
         var data = first100;

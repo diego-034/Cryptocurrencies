@@ -1,9 +1,12 @@
 /* request to API */
+let dataFilters;
 function getData() {
     try {
         fetch("https://api.coinpaprika.com/v1/tickers")
             .then((response) => response.json())
             .then((response) => {
+                dataFilters = response;
+                //console.log("inside ajax",dataFilters)
                 /* filter th array */
                 first100 = response.filter((elem) => elem.rank > 0 && elem.rank <= 100);
                 /* validation */
@@ -24,4 +27,60 @@ function getData() {
     } catch (error) {
         console.log(error);
     }
+}
+
+/* Global variable*/
+
+// Funtion return object with arrays filtereds
+function marketCapFilter(dataFilters){
+    let filters = {};
+    let all = dataFilters;
+    let billionMore = dataFilters.filter(elem => elem.quotes.USD.market_cap >= 1000000000);
+    let millionsToBillions = dataFilters.filter(elem => elem.quotes.USD.market_cap>=100000000 && elem.quotes.USD.market_cap<=1000000000);
+    let millionsToMillions = dataFilters.filter(elem => elem.quotes.USD.market_cap >= 10000000 && elem.quotes.USD.market_cap <= 100000000);
+    let millionToMillions = dataFilters.filter(elem => elem.quotes.USD.market_cap >= 1000000 && elem.quotes.USD.market_cap <= 10000000);
+    let hundredThousandToMillion = dataFilters.filter(elem => elem.quotes.USD.market_cap >= 100000 && elem.quotes.USD.market_cap <= 1000000);
+    let zeroToHundredThousand = dataFilters.filter(elem => elem.quotes.USD.market_cap >= 0 && elem.quotes.USD.market_cap <= 100000);
+    filters.all = all;
+    filters.billionMore = billionMore;
+    filters.millionsToBillions = millionsToBillions;
+    filters.millionsToMillions = millionsToMillions;
+    filters.millionToMillions = millionToMillions;
+    filters.hundredThousandToMillion = hundredThousandToMillion;
+    filters.zeroToHundredThousand = zeroToHundredThousand;
+    return filters;
+}
+
+function volume24hFilter(dataFilters){
+    let filters = {};
+    let all = dataFilters;
+    let moreTenMillions = dataFilters.filter(elem => elem.quotes.USD.volume_24h >= 10000000);
+    let moreAMillion = dataFilters.filter(elem => elem.quotes.USD.volume_24h>=1000000);
+    let moreOneHundredThousand = dataFilters.filter(elem => elem.quotes.USD.volume_24h >= 100000);
+    let moreTenThousand = dataFilters.filter(elem => elem.quotes.USD.volume_24h >= 10000 );
+    let moreOneThousand = dataFilters.filter(elem => elem.quotes.USD.volume_24h >= 1000 );
+    filters.all = all;
+    filters.moreTenMillions = moreTenMillions;
+    filters.moreAMillion = moreAMillion;
+    filters.moreOneHundredThousand = moreOneHundredThousand;
+    filters.moreTenThousand = moreTenThousand;
+    filters.moreOneThousand = moreOneThousand;
+    return filters;
+}
+
+function priceFilter(dataFilters){
+    let filters = {};
+    let all = dataFilters;
+    let moreOneHundred = dataFilters.filter(elem => elem.quotes.USD.price >= 100);
+    let between1and100 = dataFilters.filter(elem => elem.quotes.USD.price>=1 && elem.quotes.USD.price>=100);
+    let between0_01and1_00 = dataFilters.filter(elem => elem.quotes.USD.price>=0.01 && elem.quotes.USD.price>=1.00);
+    let between0_0001and0_01  = dataFilters.filter(elem => elem.quotes.USD.price>= 0.0001 && elem.quotes.USD.price>= 0.01);
+    let betweenZeroand0_0001 = dataFilters.filter(elem => elem.quotes.USD.price>=0 && elem.quotes.USD.price>=0.0001 );
+    filters.all = all;
+    filters.moreOneHundred = moreOneHundred;
+    filters.between1and100 = between1and100;
+    filters.between0_01and1_00 = between0_01and1_00;
+    filters.between0_0001and0_01 = between0_0001and0_01;
+    filters.betweenZeroand0_0001 = betweenZeroand0_0001;
+    return filters;
 }
