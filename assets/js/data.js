@@ -116,7 +116,11 @@ function priceFilter(dataFilters) {
 
 function convertBtc(data) {
     for (let i = 0; i < data.length; i++) {
-        data[i].quotes.USD.price = (data[i].quotes.USD.price * 1) / btcValue.price_usd;
+        data[i].quotes.USD.price = format2((data[i].quotes.USD.price * 1) / btcValue.price_usd);
+        data[i].quotes.USD.volume_24h = format2((data[i].quotes.USD.volume_24h * 1) / btcValue.price_usd);
+        data[i].quotes.USD.market_cap = format2((data[i].quotes.USD.market_cap * 1) / btcValue.price_usd);
+        data[i].quotes.USD.ath_price = format2((data[i].quotes.USD.ath_price * 1) / btcValue.price_usd);
+
         data[i].status = true;
     }
     console.log(data);

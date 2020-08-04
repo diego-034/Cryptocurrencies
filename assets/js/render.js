@@ -13,9 +13,9 @@ function renderView(data, tab) {
                                      ${element.name + " " + element.symbol}
                                 </td>
                                 <td class="uk-width-small uk-text-right">
-                                    $ ${(price = element.status != undefined
-                                      ? element.quotes.USD.price
-                                      : format(element.quotes.USD.price))}
+                                     ${(price= element.status != undefined
+                                      ? element.quotes.USD.price+" BTC"
+                                      : "$  "+format(element.quotes.USD.price))}
                                 </td>
                                 <td class="uk-table-shrink uk-text-right uk-text-${(color =
                                   element.quotes.USD.percent_change_1h < 0

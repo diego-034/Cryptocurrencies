@@ -32,3 +32,12 @@ function format(data) {
         return null;
     }
 }
+
+function format2(data) {
+    try {
+        return Number.parseFloat(data).toFixed(6);
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
