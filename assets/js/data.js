@@ -1,75 +1,65 @@
 /* request to API  Data Tickers*/
-function getData(){
-    const url = "https://api.coinpaprika.com/v1/tickers";    
+function getData() {
     console.time("Peticion");
     $.ajax({
-        url : url,    
-        type : 'GET',
-        dataType: "json", 
-        success : function(response){
-                // array with 100 positions 
-                allData = response;
-                // filter th array 
-                first100 = response.filter((elem) => elem.rank > 0 && elem.rank <= 100);
-                //  validation 
-                if (first100[0] == null) {
-                    return;
-                }
-                first100.sort((a, b) => a.rank - b.rank);
-                //  change display of loader 
-                document.getElementById("loader").style.display = "none";
-                //  call functions to render tables 
-                renderView(first100, tab);
-                // get filter data 
-                flMarketcap = marketCapFilter(allData);
-                console.log(flMarketcap);
-                flVolumen = volume24hFilter(allData);
-                console.log(flVolumen);
-                flPrice = priceFilter(allData);
-                console.log(flPrice);
-                console.timeEnd("Peticion");
+        url: "https://api.coinpaprika.com/v1/tickers",
+        type: 'GET',
+        dataType: "json",
+        success: function(response) {
+            // array with 100 positions 
+            allData = response;
+            // filter th array 
+            first100 = response.filter((elem) => elem.rank > 0 && elem.rank <= 100);
+            //  validation 
+            if (first100[0] == null) {
+                return;
+            }
+            first100.sort((a, b) => a.rank - b.rank);
+            //  change display of loader 
+            document.getElementById("loader").style.display = "none";
+            //  call functions to render tables 
+            renderView(first100, tab);
+            // get filter data 
+            flMarketcap = marketCapFilter(allData);
+            flVolumen = volume24hFilter(allData);
+            flPrice = priceFilter(allData);
+            console.timeEnd("Peticion");
         },
-        error: function(error){
-           console.log(error);
-        }    
+        error: function(error) {
+            console.log(error);
+        }
     });
-}
-function getDataBitcoin(){
-    const url = "https://api.coinpaprika.com/v1/ticker/btc-bitcoin";    
     console.time("request-Bitcoin");
     $.ajax({
-        url : url,    
-        type : 'GET',
-        dataType: "json", 
-        success : function(response){
-            console.log(response);                
+        url: "https://api.coinpaprika.com/v1/ticker/btc-bitcoin",
+        type: 'GET',
+        dataType: "json",
+        success: function(response) {
+            btcValue = response;
+            console.log(btcValue);
             console.timeEnd("request-Bitcoin");
         },
-        error: function(error){
-           console.log(error);
-        }    
+        error: function(error) {
+            console.log(error);
+        }
     });
-}
-
-
-function getDataEthereum(){
-    const url = "https://api.coinpaprika.com/v1/ticker/eth-ethereum";    
     console.time("request-ethereum");
     $.ajax({
-        url : url,    
-        type : 'GET',
-        dataType: "json", 
-        success : function(response){
-                console.log(response);
-                console.timeEnd("request-ethereum");
+        url: "https://api.coinpaprika.com/v1/ticker/eth-ethereum",
+        type: 'GET',
+        dataType: "json",
+        success: function(response) {
+            ethValue = response;
+            console.log(ethValue);
+            console.timeEnd("request-ethereum");
         },
-        error: function(error){
-           console.log(error);
-        }    
+        error: function(error) {
+            console.log(error);
+        }
     });
 }
 
-  
+
 // Funtion return object with arrays filtereds
 function marketCapFilter(dataFilters) {
     let filters = {};
@@ -122,4 +112,17 @@ function priceFilter(dataFilters) {
     filters.between0_0001and0_01 = between0_0001and0_01;
     filters.betweenZeroand0_0001 = betweenZeroand0_0001;
     return filters;
+}
+
+function convertBtc(data) {
+    for (let i = 0; i < data.length; i++) {
+        data[i].quotes.USD.price = (data[i].quotes.USD.price * 1) / btcValue.price_usd;
+        data[i].status = true;
+    }
+    console.log(data);
+    return data;
+}
+
+function convertEth() {
+
 }
