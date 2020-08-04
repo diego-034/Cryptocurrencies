@@ -26,7 +26,7 @@ function date(data) {
 /* number format */
 function format(data) {
     try {
-        return Number.parseFloat(data).toFixed(2);
+        return "$  " + Number.parseFloat(data).toFixed(2);
     } catch (error) {
         console.log(error);
         return null;
@@ -35,7 +35,7 @@ function format(data) {
 
 function format2(data) {
     try {
-        return Number.parseFloat(data).toFixed(6);
+        return Number.parseFloat(data).toFixed(6) + " BTC";
     } catch (error) {
         console.log(error);
         return null;

@@ -47,9 +47,20 @@ let btcValue;
 
 // convert to Bitcoin
 $("#btc").click(function() {
-    let data = convertBtc(first100);
+    let data = first100;
+    if (filter != null) {
+        data = filter;
+        console.log(filter);
+    }
+    if (next100 != null) {
+        data = next100;
+    }
+    let response = convertBtc(data);
     $("tbody>tr").remove();
-    renderView(data, tab);
+    $("#btConvert").html("BTC");
+    $("#btc").css("display", "none");
+    $("#usd").css("display", "block");
+    renderView(response, tab);
 });
 
 // convert to Ethereum

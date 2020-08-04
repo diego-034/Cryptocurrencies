@@ -13,9 +13,10 @@ function renderView(data, tab) {
                                      ${element.name + " " + element.symbol}
                                 </td>
                                 <td class="uk-width-small uk-text-right">
-                                     ${(price= element.status != undefined
-                                      ? element.quotes.USD.price+" BTC"
-                                      : "$  "+format(element.quotes.USD.price))}
+                                     ${(price =
+                                       element.status != undefined
+                                         ? format2(element.quotes.USD.price)
+                                         : format(element.quotes.USD.price))}
                                 </td>
                                 <td class="uk-table-shrink uk-text-right uk-text-${(color =
                                   element.quotes.USD.percent_change_1h < 0
@@ -39,10 +40,16 @@ function renderView(data, tab) {
                                     ${element.quotes.USD.percent_change_7d}%
                                 </td>
                                 <td class="uk-text-right  th-price">
-                                    $ ${element.quotes.USD.volume_24h}
+                                ${(volumen =
+                                  element.status != undefined
+                                    ? format2(element.quotes.USD.volume_24h)
+                                    : format(element.quotes.USD.volume_24h))}
                                 </td>
                                 <td class="uk-text-right  th-price">
-                                    $ ${element.quotes.USD.market_cap} 
+                                ${(marketCap =
+                                  element.status != undefined
+                                    ? format2(element.quotes.USD.market_cap)
+                                    : format(element.quotes.USD.market_cap))}
                                 </td>
                                 <td class="uk-width-max uk-text-${(color =
                                   element.quotes.USD.percent_change_30d < 0
@@ -72,7 +79,10 @@ function renderView(data, tab) {
                                 </td>
                                 <td class="uk-text-right th-community">...</td>
                                 <td class="uk-table-small uk-text-right th-ath">
-                                $ ${format(element.quotes.USD.ath_price)}
+                                ${(athPrice =
+                                  element.status != undefined
+                                    ? format2(element.quotes.USD.ath_price)
+                                    : format(element.quotes.USD.ath_price))}
                          </td>
                          <td class="uk-table-small uk-text-right th-ath">
                              ${date(element.quotes.USD.ath_date)}
@@ -134,6 +144,7 @@ function theme(value) {
         $("th").addClass("th-night");
         $(".uk-card-default").css("background-color", "black");
         $(".uk-dropdown-bottom-left").css("background-color", "black");
+        $(".uk-dropdown").css("background-color", "black");
     } else {
         $("body").removeClass("uk-light uk-background-secondary");
         $("#theme").val(true);
@@ -144,5 +155,6 @@ function theme(value) {
         $("th").addClass("th");
         $(".uk-card-default").css("background-color", "white");
         $(".uk-dropdown-bottom-left").css("background-color", "white");
+        $(".uk-dropdown").css("background-color", "white");
     }
 }
