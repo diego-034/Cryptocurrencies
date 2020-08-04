@@ -42,6 +42,16 @@ let next100;
 let flMarketcap = {};
 let flVolumen = {};
 let flPrice = {};
+
+// Get Data Bitcoin
+$("#btc").click(function () {
+    getDataBitcoin();
+});
+
+// Get Data Bitcoin
+$("#eth").click(function(){
+    getDataEthereum();
+})
 /* order by position */
 $("#position").click(function() {
         var data = first100;

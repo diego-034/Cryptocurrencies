@@ -1,41 +1,75 @@
-/* request to API */
-
-function getData() {
-    try {
-        fetch("https://api.coinpaprika.com/v1/tickers")
-            .then((response) => response.json())
-            .then((response) => {
-                /* array with 100 positions */
+/* request to API  Data Tickers*/
+function getData(){
+    const url = "https://api.coinpaprika.com/v1/tickers";    
+    console.time("Peticion");
+    $.ajax({
+        url : url,    
+        type : 'GET',
+        dataType: "json", 
+        success : function(response){
+                // array with 100 positions 
                 allData = response;
-                /* filter th array */
+                // filter th array 
                 first100 = response.filter((elem) => elem.rank > 0 && elem.rank <= 100);
-                /* validation */
+                //  validation 
                 if (first100[0] == null) {
                     return;
                 }
                 first100.sort((a, b) => a.rank - b.rank);
-                /* change display of loader */
+                //  change display of loader 
                 document.getElementById("loader").style.display = "none";
-                /* call functions to render tables */
+                //  call functions to render tables 
                 renderView(first100, tab);
-                /* get filter data */
+                // get filter data 
                 flMarketcap = marketCapFilter(allData);
                 console.log(flMarketcap);
                 flVolumen = volume24hFilter(allData);
                 console.log(flVolumen);
                 flPrice = priceFilter(allData);
                 console.log(flPrice);
-
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-
-    } catch (error) {
-        console.log(error);
-    }
+                console.timeEnd("Peticion");
+        },
+        error: function(error){
+           console.log(error);
+        }    
+    });
+}
+function getDataBitcoin(){
+    const url = "https://api.coinpaprika.com/v1/ticker/btc-bitcoin";    
+    console.time("request-Bitcoin");
+    $.ajax({
+        url : url,    
+        type : 'GET',
+        dataType: "json", 
+        success : function(response){
+            console.log(response);                
+            console.timeEnd("request-Bitcoin");
+        },
+        error: function(error){
+           console.log(error);
+        }    
+    });
 }
 
+
+function getDataEthereum(){
+    const url = "https://api.coinpaprika.com/v1/ticker/eth-ethereum";    
+    console.time("request-ethereum");
+    $.ajax({
+        url : url,    
+        type : 'GET',
+        dataType: "json", 
+        success : function(response){
+                console.log(response);
+                console.timeEnd("request-ethereum");
+        },
+        error: function(error){
+           console.log(error);
+        }    
+    });
+}
+
+  
 // Funtion return object with arrays filtereds
 function marketCapFilter(dataFilters) {
     let filters = {};

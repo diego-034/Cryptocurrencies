@@ -131,6 +131,7 @@ function theme(value) {
         $("th").removeClass("th");
         $("th").addClass("th-night");
         $(".uk-card-default").css("background-color", "black");
+        $(".uk-dropdown-bottom-left").css("background-color", "black");
     } else {
         $("body").removeClass("uk-light uk-background-secondary");
         $("#theme").val(true);
@@ -140,5 +141,6 @@ function theme(value) {
         $("th").removeClass("th-night");
         $("th").addClass("th");
         $(".uk-card-default").css("background-color", "white");
+        $(".uk-dropdown-bottom-left").css("background-color", "white");
     }
 }
