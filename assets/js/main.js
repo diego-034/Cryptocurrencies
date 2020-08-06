@@ -23,7 +23,7 @@ $("#btn_ath").click(function() {
     $(".th-ath").css("display", "table-cell");
     tab = "ath";
 });
-/* globals variables */
+/* Globals variables */
 let first100;
 let tab;
 let filter;
@@ -35,7 +35,7 @@ let flPrice = {};
 let etcValue;
 let btcValue;
 
-// convert to Bitcoin
+// Convert to Bitcoin
 $("#btc").click(function() {
     let data = first100;
     if (filter != null) {
@@ -53,11 +53,11 @@ $("#btc").click(function() {
     renderView(response, tab);
 });
 
-// convert to Ethereum
+// Convert to Ethereum
 $("#eth").click(function() {
     console.log(first100);
 });
-/* order by position */
+/* Order by position */
 $("#position").click(function() {
     var data = first100;
     if (filter != null) {
@@ -78,7 +78,7 @@ $("#position").click(function() {
         renderView(data, tab);
     }
 });
-/* order by name */
+/* Order by name */
 $("#name").click(function() {
     var data = first100;
     if (filter != null) {
@@ -99,7 +99,7 @@ $("#name").click(function() {
         renderView(data, tab);
     }
 });
-/* order by price */
+/* Order by price */
 $("#price").click(function() {
     var data = first100;
     if (filter != null) {
@@ -121,7 +121,7 @@ $("#price").click(function() {
     }
 });
 
-/* order by h1 */
+/* Order by h1 */
 $("#1h").click(function() {
     var data = first100;
     if (filter != null) {
@@ -146,7 +146,7 @@ $("#1h").click(function() {
         renderView(data, tab);
     }
 });
-/* order by 24h */
+/* Order by 24h */
 $("#24h").click(function() {
     var data = first100;
     if (filter != null) {
@@ -173,7 +173,7 @@ $("#24h").click(function() {
         renderView(data, tab);
     }
 });
-/* order by 7d */
+/* Order by 7d */
 $("#7d").click(function() {
     var data = first100;
     if (filter != null) {
@@ -198,7 +198,7 @@ $("#7d").click(function() {
         renderView(data, tab);
     }
 });
-/* order by volumen 24 */
+/* Order by volumen 24 */
 $("#volumen24").click(function() {
     var data = first100;
     if (filter != null) {
@@ -219,7 +219,7 @@ $("#volumen24").click(function() {
         renderView(data, tab);
     }
 });
-/* order by fl */
+/* Order by fl */
 $("#marketcap").click(function() {
     var data = first100;
     if (filter != null) {
@@ -240,7 +240,7 @@ $("#marketcap").click(function() {
         renderView(data, tab);
     }
 });
-/* order by 30d */
+/* Order by 30d */
 $("#30d").click(function() {
     var data = first100;
     if (filter != null) {
@@ -267,7 +267,7 @@ $("#30d").click(function() {
         renderView(data, tab);
     }
 });
-/* order by 1y */
+/* Order by 1y */
 $("#1y").click(function() {
     var data = first100;
     if (filter != null) {
@@ -292,7 +292,7 @@ $("#1y").click(function() {
         renderView(data, tab);
     }
 });
-/* order by ath */
+/* Order by ath */
 $("#ath").click(function() {
     var data = first100;
     if (filter != null) {
@@ -313,7 +313,7 @@ $("#ath").click(function() {
         renderView(data, tab);
     }
 });
-/* order by ath date */
+/* Order by ath date */
 $("#athDate").click(function() {
     var data = first100;
     if (filter != null) {
@@ -340,7 +340,7 @@ $("#athDate").click(function() {
         renderView(data, tab);
     }
 });
-/* order by ath days */
+/* Order by ath days */
 $("#athDays").click(function() {
     var data = first100;
     if (filter != null) {
@@ -367,7 +367,7 @@ $("#athDays").click(function() {
         renderView(data, tab);
     }
 });
-/* order by ath days */
+/* Order by ath days */
 $("#fromAth").click(function() {
     var data = first100;
     if (filter != null) {
@@ -396,7 +396,7 @@ $("#fromAth").click(function() {
         renderView(data, tab);
     }
 });
-/* order by ath days */
+/* Order by ath days */
 $("#next100").click(function() {
     filter = null;
     $("tbody>tr").remove();
@@ -415,7 +415,7 @@ $("#first100").click(function() {
     $("#next100").css("display", "block");
     $("#first100").css("display", "none");
 });
-/* filter Market Cap */
+/* Filter Market Cap */
 $("#fl-m-1b").click(function() {
     next100 = null;
     $("tbody>tr").remove();
@@ -481,7 +481,7 @@ $("#fl-m-all").click(function() {
     filter = data;
     renderView(data, tab);
 });
-/* filter volumen */
+/* Filter volumen */
 $("#fl-v-10").click(function() {
     next100 = null;
     $("tbody>tr").remove();
@@ -542,7 +542,7 @@ $("#fl-v-all").click(function() {
     filter = data;
     renderView(data, tab);
 });
-/* filter price */
+/* Filter price */
 $("#fl-p-m-100").click(function() {
     next100 = null;
     $("tbody>tr").remove();
@@ -603,10 +603,10 @@ $("#fl-p-m-all").click(function() {
     filter = data;
     renderView(data, tab);
 });
-/* render view */
+/* Render view */
 function renderView(data, tab) {
     try {
-        /* tr with data */
+        /* foreach to set data in rows */
         let tr;
         data.forEach((element, index) => {
             tr += `<tr>
@@ -708,7 +708,9 @@ function renderView(data, tab) {
                          </td>
                             </tr>`;
         });
+        // Add rows at tbody
         $("#tbody-list-price").append(tr);
+        // Switch to show tab selected
         switch (tab) {
             case "return":
                 $(".th-ath").css("display", "none");
@@ -731,7 +733,7 @@ function renderView(data, tab) {
     }
 }
 
-/* dark mode */
+/* Dark Mode */
 function theme(value) {
     if (value == "true") {
         $("body").addClass("uk-light uk-background-secondary");
@@ -761,7 +763,7 @@ function theme(value) {
         $("tbody th").css("border", "#b3b3b3 1px solid");
     }
 }
-/* request to API  Data Tickers*/
+/* Request to API  Data Tickers */
 function getData() {
     console.time("Peticion");
     $.ajax({
@@ -786,35 +788,30 @@ function getData() {
             flMarketcap = marketCapFilter(allData);
             flVolumen = volume24hFilter(allData);
             flPrice = priceFilter(allData);
-            console.timeEnd("Peticion");
         },
         error: function(error) {
             console.log(error);
         }
     });
-    console.time("request-Bitcoin");
+    // Request price BTC to conver USD
     $.ajax({
         url: "https://api.coinpaprika.com/v1/ticker/btc-bitcoin",
         type: 'GET',
         dataType: "json",
         success: function(response) {
             btcValue = response;
-            console.log(btcValue);
-            console.timeEnd("request-Bitcoin");
         },
         error: function(error) {
             console.log(error);
         }
     });
-    console.time("request-ethereum");
+    // Request price ETH to convert USD
     $.ajax({
         url: "https://api.coinpaprika.com/v1/ticker/eth-ethereum",
         type: 'GET',
         dataType: "json",
         success: function(response) {
             ethValue = response;
-            console.log(ethValue);
-            console.timeEnd("request-ethereum");
         },
         error: function(error) {
             console.log(error);
@@ -876,7 +873,7 @@ function priceFilter(dataFilters) {
     filters.betweenZeroand0_0001 = betweenZeroand0_0001;
     return filters;
 }
-
+// Try convert to BTC
 function convertBtc(data) {
     for (let i = 0; i < data.length; i++) {
         data[i].quotes.USD.price = (data[i].quotes.USD.price * 1) / btcValue.price_usd;
@@ -893,7 +890,7 @@ function convertBtc(data) {
 function convertEth() {
 
 }
-/* date convert to days */
+/* Date convert to days 239 days */
 function days(oldDate, actualDate) {
     try {
         var fechaini = new Date(oldDate);
@@ -905,20 +902,19 @@ function days(oldDate, actualDate) {
         console.log(error);
     }
 }
-/* date format */
+/* Date Format 27 jun 2020 */
 function date(data) {
     try {
         let date = new Date(data);
         const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(date)
         const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(date)
         const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(date)
-
         return `${da} ${mo} ${ye}`;
     } catch (error) {
         console.log(error);
     }
 }
-/* number format */
+/* Number Format  $ 1000.00 */
 function format(data) {
     try {
         return "$  " + Number.parseFloat(data).toFixed(2);
@@ -927,7 +923,7 @@ function format(data) {
         return null;
     }
 }
-/* bitcoin format */
+/* Bitcoin Format 0.123 BTC */
 function format2(data) {
     try {
         return Number.parseFloat(data).toFixed(6) + " BTC";
