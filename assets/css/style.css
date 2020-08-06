@@ -1,78 +1,86 @@
-.uk-text-white {
-    color: #9b9b9b;
-}
-
-.font-color-gray {
-    font-family: Arial, sans-serif;
-    font-size: 12px;
-    color: #9b9b9b;
-}
-
-.uk-table-hover tbody tr:hover,
-.uk-table-hover>tr:hover {
-    background: #cfd8dc !important;
-    color: black;
-}
-
-.uk-table-hover-night tbody tr:hover,
-.uk-table-hover>tr:hover {
-    background: #585e61 !important;
-    color: #cfd8dc;
-}
-
-.uk-text-success {
-    color: #43aa05 !important;
-}
-
-.display-none {
-    display: none;
-}
-
-.coin-icon {
-    width: 20px;
-    min-width: 20px;
-    height: 20px;
-    display: inline-block;
-}
-
-.svg-icon {
-    height: 20px;
-    width: 110px;
-    display: inline-block;
-}
-
-.uk-width-max {
-    width: 200px;
-}
-
-.uk-width-small {
-    width: 100px;
-}
-
-.uk-width-medium {
-    width: 100px;
-}
-
-.display-inline {
-    display: inline;
-}
-
-.th:hover {
-    cursor: pointer;
-    line-height: 1.1;
-    background: #cfd8dc;
-}
-
-.th-night:hover {
-    cursor: pointer;
-    line-height: 1.1;
-    background: #585e61;
-}
-
-.th-display-none>th {
-    display: none;
-}
-
-body {
-    min-height: 100vh;
-}
+    .uk-text-white {
+        color: #9b9b9b;
+    }
+    
+    .font-color-gray {
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        color: #9b9b9b;
+    }
+    
+    .uk-table-hover tbody tr:hover,
+    .uk-table-hover>tr:hover {
+        background: #cfd8dc !important;
+        color: black;
+    }
+    
+    .uk-table-hover-night tbody tr:hover,
+    .uk-table-hover>tr:hover {
+        background: #585e61 !important;
+        color: #cfd8dc;
+    }
+    
+    .uk-text-success {
+        color: #43aa05 !important;
+    }
+    
+    .display-none {
+        display: none;
+    }
+    
+    .coin-icon {
+        width: 20px;
+        min-width: 20px;
+        height: 20px;
+        display: inline-block;
+    }
+    
+    .svg-icon {
+        height: 20px;
+        width: 110px;
+        display: inline-block;
+    }
+    
+    .uk-width-max {
+        width: 200px;
+    }
+    
+    .uk-width-small {
+        width: 100px;
+    }
+    
+    .uk-width-medium {
+        width: 100px;
+    }
+    
+    .display-inline {
+        display: inline;
+    }
+    
+    .th:hover {
+        cursor: pointer;
+        line-height: 1.1;
+        background: #cfd8dc;
+    }
+    
+    .th-night:hover {
+        cursor: pointer;
+        line-height: 1.1;
+        background: #585e61;
+    }
+    
+    .th-display-none>th {
+        display: none;
+    }
+    
+    body {
+        min-height: 100vh;
+    }
+    
+    thead th {
+        border: #b3b3b3 1px solid;
+    }
+    
+    tbody td {
+        border: #b3b3b3 1px solid;
+    }

@@ -8,27 +8,17 @@ document.addEventListener("DOMContentLoaded", function() {
 $("#btn_price").click(function() {
     $(".th-return").css("display", "none");
     $(".th-ath").css("display", "none");
-    $(".th-community").css("display", "none");
     $(".th-price").css("display", "table-cell");
     tab = "price";
 });
 $("#btn_return").click(function() {
     $(".th-price").css("display", "none");
     $(".th-ath").css("display", "none");
-    $(".th-community").css("display", "none");
     $(".th-return").css("display", "table-cell");
     tab = "return";
 });
-$("#btn_community").click(function() {
-    $(".th-price").css("display", "none");
-    $(".th-ath").css("display", "none");
-    $(".th-return").css("display", "none");
-    $(".th-community").css("display", "table-cell");
-    tab = "community";
-});
 $("#btn_ath").click(function() {
     $(".th-price").css("display", "none");
-    $(".th-community").css("display", "none");
     $(".th-return").css("display", "none");
     $(".th-ath").css("display", "table-cell");
     tab = "ath";
@@ -427,11 +417,13 @@ $("#first100").click(function() {
 });
 /* filter Market Cap */
 $("#fl-m-1b").click(function() {
+    next100 = null;
     $("tbody>tr").remove();
     renderView(flMarketcap.billionMore, tab);
     filter = flMarketcap.billionMore;
 });
 $("#fl-m-100-1m").click(function() {
+    next100 = null;
     $("tbody>tr").remove();
     let data = [];
     for (let i = 0; i < 35; i++) {
@@ -441,6 +433,7 @@ $("#fl-m-100-1m").click(function() {
     filter = data;
 });
 $("#fl-m-10-100m").click(function() {
+    next100 = null;
     $("tbody>tr").remove();
     let data = [];
     for (let i = 0; i < 35; i++) {
@@ -450,6 +443,7 @@ $("#fl-m-10-100m").click(function() {
     renderView(data, tab);
 });
 $("#fl-m-1-10m").click(function() {
+    next100 = null;
     $("tbody>tr").remove();
     let data = [];
     for (let i = 0; i < 35; i++) {
@@ -459,6 +453,7 @@ $("#fl-m-1-10m").click(function() {
     renderView(data, tab);
 });
 $("#fl-m-100k-1m").click(function() {
+    next100 = null;
     $("tbody>tr").remove();
     let data = [];
     for (let i = 0; i < 35; i++) {
@@ -477,6 +472,7 @@ $("#fl-m-0-100k").click(function() {
     renderView(data, tab);
 });
 $("#fl-m-all").click(function() {
+    next100 = null;
     $("tbody>tr").remove();
     let data = [];
     for (let i = 0; i < 100; i++) {
@@ -487,6 +483,7 @@ $("#fl-m-all").click(function() {
 });
 /* filter volumen */
 $("#fl-v-10").click(function() {
+    next100 = null;
     $("tbody>tr").remove();
     let data = [];
     for (let i = 0; i < 35; i++) {
@@ -496,6 +493,7 @@ $("#fl-v-10").click(function() {
     renderView(data, tab);
 });
 $("#fl-v-1").click(function() {
+    next100 = null;
     $("tbody>tr").remove();
     let data = [];
     for (let i = 0; i < 35; i++) {
@@ -505,6 +503,7 @@ $("#fl-v-1").click(function() {
     renderView(data, tab);
 });
 $("#fl-v-100k").click(function() {
+    next100 = null;
     $("tbody>tr").remove();
     let data = [];
     for (let i = 0; i < 35; i++) {
@@ -514,6 +513,7 @@ $("#fl-v-100k").click(function() {
     renderView(data, tab);
 });
 $("#fl-v-10k").click(function() {
+    next100 = null;
     $("tbody>tr").remove();
     let data = [];
     for (let i = 0; i < 35; i++) {
@@ -523,6 +523,7 @@ $("#fl-v-10k").click(function() {
     renderView(data, tab);
 });
 $("#fl-v-1k").click(function() {
+    next100 = null;
     $("tbody>tr").remove();
     let data = [];
     for (let i = 0; i < 35; i++) {
@@ -532,6 +533,7 @@ $("#fl-v-1k").click(function() {
     renderView(data, tab);
 });
 $("#fl-v-all").click(function() {
+    next100 = null;
     $("tbody>tr").remove();
     let data = [];
     for (let i = 0; i < 100; i++) {
@@ -542,6 +544,7 @@ $("#fl-v-all").click(function() {
 });
 /* filter price */
 $("#fl-p-m-100").click(function() {
+    next100 = null;
     $("tbody>tr").remove();
     let data = [];
     for (let i = 0; i < 35; i++) {
@@ -551,6 +554,7 @@ $("#fl-p-m-100").click(function() {
     renderView(data, tab);
 });
 $("#fl-p-m-1-100").click(function() {
+    next100 = null;
     $("tbody>tr").remove();
     let data = [];
     for (let i = 0; i < 35; i++) {
@@ -560,6 +564,7 @@ $("#fl-p-m-1-100").click(function() {
     renderView(data, tab);
 });
 $("#fl-p-m-0-3").click(function() {
+    next100 = null;
     $("tbody>tr").remove();
     let data = [];
     for (let i = 0; i < 35; i++) {
@@ -569,6 +574,7 @@ $("#fl-p-m-0-3").click(function() {
     renderView(data, tab);
 });
 $("#fl-p-m-0-2").click(function() {
+    next100 = null;
     $("tbody>tr").remove();
     let data = [];
     for (let i = 0; i < 35; i++) {
@@ -578,6 +584,7 @@ $("#fl-p-m-0-2").click(function() {
     renderView(data, tab);
 });
 $("#fl-p-m-0-1").click(function() {
+    next100 = null;
     $("tbody>tr").remove();
     let data = [];
     for (let i = 0; i < 35; i++) {
@@ -587,6 +594,7 @@ $("#fl-p-m-0-1").click(function() {
     renderView(data, tab);
 });
 $("#fl-p-m-all").click(function() {
+    next100 = null;
     $("tbody>tr").remove();
     let data = [];
     for (let i = 0; i < 100; i++) {
@@ -674,7 +682,6 @@ function renderView(data, tab) {
                                       }/1y/chart.svg"/>
                                 $ ${element.quotes.USD.percent_change_1y} 
                                 </td>
-                                <td class="uk-text-right th-community">...</td>
                                 <td class="uk-table-small uk-text-right th-ath">
                                 ${(athPrice =
                                   element.status != undefined
@@ -703,11 +710,6 @@ function renderView(data, tab) {
         });
         $("#tbody-list-price").append(tr);
         switch (tab) {
-            case "community":
-                $(".th-ath").css("display", "none");
-                $(".th-price").css("display", "none");
-                $(".th-return").css("display", "none");
-                break;
             case "return":
                 $(".th-ath").css("display", "none");
                 $(".th-community").css("display", "none");
@@ -742,6 +744,8 @@ function theme(value) {
         $(".uk-card-default").css("background-color", "black");
         $(".uk-dropdown-bottom-left").css("background-color", "black");
         $(".uk-dropdown").css("background-color", "black");
+        $("tbody td").css("border", "#585e61 1px solid");
+        $("tbody th").css("border", "#585e61 1px solid");
     } else {
         $("body").removeClass("uk-light uk-background-secondary");
         $("#theme").val(true);
@@ -753,6 +757,8 @@ function theme(value) {
         $(".uk-card-default").css("background-color", "white");
         $(".uk-dropdown-bottom-left").css("background-color", "white");
         $(".uk-dropdown").css("background-color", "white");
+        $("tbody td").css("border", "#b3b3b3 1px solid");
+        $("tbody th").css("border", "#b3b3b3 1px solid");
     }
 }
 /* request to API  Data Tickers*/
@@ -921,7 +927,7 @@ function format(data) {
         return null;
     }
 }
-
+/* bitcoin format */
 function format2(data) {
     try {
         return Number.parseFloat(data).toFixed(6) + " BTC";
