@@ -15,36 +15,9 @@ let btcValue;
 document.addEventListener("DOMContentLoaded", function() {
     getData();
     tab = "price";
-    
+
 });
 
-/*------------ dimanic -----------*/
-
-function dinamicValues(){
-    // Market cap
-    document.querySelector("#fl-m-all").innerText =`All(${flMarketcap.all.length})`;
-    document.querySelector("#fl-m-1b").innerText =`$1 Billion+ (${flMarketcap.billionMore.length})`;
-    document.querySelector("#fl-m-100-1m").innerText =`$100 Millions - $1 Billion(${flMarketcap.millionsToBillions.length}) `;
-    document.querySelector("#fl-m-10-100m").innerText =`$10 Millions - $100 Millions (${flMarketcap.millionsToMillions.length})`;
-    document.querySelector("#fl-m-1-10m").innerText =`$1 Million - $10 Millions (${flMarketcap.millionToMillions.length})`;
-    document.querySelector("#fl-m-100k-1m").innerText =`$100k - $1 Million(${flMarketcap.hundredThousandToMillion.length}) `;
-    document.querySelector("#fl-m-0-100k").innerText =`$0 - $100k (${flMarketcap.zeroToHundredThousand.length})`;
-    //volumen
-    document.querySelector('#fl-v-all').innerText = `All(${flVolumen.all.length})`;
-    document.querySelector('#fl-v-10').innerText = `$10 Million+ (${flVolumen.moreTenMillions.length})`;
-    document.querySelector('#fl-v-1').innerText = `$1 Million+(${flVolumen.moreAMillion.length})`;
-    document.querySelector('#fl-v-100k').innerText = `$100k+(${flVolumen.moreOneHundredThousand.length})`;
-    document.querySelector('#fl-v-10k').innerText = `$10k+(${flVolumen.moreTenThousand.length})`;
-    document.querySelector('#fl-v-1k').innerText = `$1k+(${flVolumen.moreOneThousand.length})`;
-    //price
-    document.querySelector("#fl-p-m-all").innerText = `All (${flPrice.all.length})`;
-    document.querySelector("#fl-p-m-100").innerText = `$100+ (${flPrice.moreOneHundred.length})`;
-    document.querySelector("#fl-p-m-1-100").innerText = `$1 - $100 (${flPrice.between1and100.length})`;
-    document.querySelector("#fl-p-m-0-3").innerText = `$0.01 - $1.00 (${flPrice.between0_01and1_00.length})`;
-    document.querySelector("#fl-p-m-0-2").innerText = `$0.0001 - $0.01 (${flPrice.between0_0001and0_01.length})`;
-    document.querySelector("#fl-p-m-0-1").innerText = `$0 - $0.0001 (${flPrice.betweenZeroand0_0001.length})`;
-    
-}
 /*---------------- Router functions-----------------------*/
 $("#btn_price").click(function() {
     $(".th-return").css("display", "none");
@@ -88,8 +61,8 @@ $("#eth").click(function() {
     console.log(first100);
 });
 
- /*----------- Order by---------------*/
- 
+/*----------- Order by---------------*/
+
 // Order by position 
 $("#position").click(function() {
     var data = first100;
@@ -440,26 +413,55 @@ $("#next100").click(function() {
     $("#next100").css("display", "none");
     $("#first100").css("display", "block");
 });
- function inject(flag,data){
+
+function inject(flag, data) {
     switch (flag) {
         case 0:
-            flPrice =  priceFilter(data);
-            flVolumen= volume24hFilter(data);
-        break;
-        case 1:
-            flMarketcap =  marketCapFilter(data);
-            flVolumen = volume24hFilter(data);
-        break;
-        case 2:
-            flMarketcap =  marketCapFilter(data);
             flPrice = priceFilter(data);
-        break;
-    
-        default: "En el default"
+            flVolumen = volume24hFilter(data);
+            break;
+        case 1:
+            flMarketcap = marketCapFilter(data);
+            flPrice = priceFilter(data);
+            break;
+        case 2:
+            flMarketcap = marketCapFilter(data);
+            flVolumen = volume24hFilter(data);
+            break;
+
+        default:
+            "En el default"
             break;
     }
- }
+}
+/*------------ dimanic -----------*/
 
+function dinamicValues() {
+    // Market cap
+    $("#fl-m-all").html(`All(${flMarketcap.all.length})`);
+    // document.querySelector("#fl-m-all").innerText = `All(${flMarketcap.all.length})`;
+    document.querySelector("#fl-m-1b").innerText = `$1 Billion+ (${flMarketcap.billionMore.length})`;
+    document.querySelector("#fl-m-100-1b").innerText = `$100 Millions - $1 Billion(${flMarketcap.millionsToBillions.length}) `;
+    document.querySelector("#fl-m-10-100m").innerText = `$10 Millions - $100 Millions (${flMarketcap.millionsToMillions.length})`;
+    document.querySelector("#fl-m-1-10m").innerText = `$1 Million - $10 Millions (${flMarketcap.millionToMillions.length})`;
+    document.querySelector("#fl-m-100k-1m").innerText = `$100k - $1 Million(${flMarketcap.hundredThousandToMillion.length}) `;
+    document.querySelector("#fl-m-0-100k").innerText = `$0 - $100k (${flMarketcap.zeroToHundredThousand.length})`;
+    //volumen
+    document.querySelector('#fl-v-all').innerText = `All(${flVolumen.all.length})`;
+    document.querySelector('#fl-v-10').innerText = `$10 Million+ (${flVolumen.moreTenMillions.length})`;
+    document.querySelector('#fl-v-1').innerText = `$1 Million+(${flVolumen.moreAMillion.length})`;
+    document.querySelector('#fl-v-100k').innerText = `$100k+(${flVolumen.moreOneHundredThousand.length})`;
+    document.querySelector('#fl-v-10k').innerText = `$10k+(${flVolumen.moreTenThousand.length})`;
+    document.querySelector('#fl-v-1k').innerText = `$1k+(${flVolumen.moreOneThousand.length})`;
+    //price
+    document.querySelector("#fl-p-m-all").innerText = `All (${flPrice.all.length})`;
+    document.querySelector("#fl-p-m-100").innerText = `$100+ (${flPrice.moreOneHundred.length})`;
+    document.querySelector("#fl-p-m-1-100").innerText = `$1 - $100 (${flPrice.between1and100.length})`;
+    document.querySelector("#fl-p-m-0-3").innerText = `$0.01 - $1.00 (${flPrice.between0_01and1_00.length})`;
+    document.querySelector("#fl-p-m-0-2").innerText = `$0.0001 - $0.01 (${flPrice.between0_0001and0_01.length})`;
+    document.querySelector("#fl-p-m-0-1").innerText = `$0 - $0.0001 (${flPrice.betweenZeroand0_0001.length})`;
+
+}
 /*---------- Filters -------------*/
 
 $("#first100").click(function() {
@@ -472,7 +474,7 @@ $("#first100").click(function() {
 });
 
 // Filter Market Cap 
-$('#select-m').on('change',function(){
+$('#select-m').on('change', function() {
     var value = $(this).val();
     if (value == null) return;
     switch (value) {
@@ -481,125 +483,130 @@ $('#select-m').on('change',function(){
             next100 = null;
             $("tbody>tr").remove();
             renderView(flMarketcap.billionMore, tab);
-            filter = flMarketcap.billionMore;  
-            inject(0,flMarketcap.billionMore)
+            filter = flMarketcap.billionMore;
+            inject(0, flMarketcap.billionMore)
             dinamicValues()
             break;
         case "hundredThousandToMillion":
             if (flMarketcap.hundredThousandToMillion.length < 1) return;
-            showFilter(0,flMarketcap.hundredThousandToMillion);              
+            showFilter(0, flMarketcap.hundredThousandToMillion);
             break;
         case "millionToMillions":
             if (flMarketcap.millionToMillions.length < 1) return;
-            showFilter(0,flMarketcap.millionToMillions);              
+            showFilter(0, flMarketcap.millionToMillions);
+            break;
+        case "millionsToMillions":
+            if (flMarketcap.millionsToMillions.length < 1) return;
+            showFilter(0, flMarketcap.millionsToMillions);
             break;
         case "millionsToBillions":
             if (flMarketcap.millionsToBillions.length < 1) return;
-            showFilter(0,flMarketcap.millionsToBillions);
+            showFilter(0, flMarketcap.millionsToBillions);
             break;
         case "hundredThousandToMillion":
             if (flMarketcap.hundredThousandToMillion.length < 1) return;
-            showFilter(0,flMarketcap.hundredThousandToMillion);
+            showFilter(0, flMarketcap.hundredThousandToMillion);
             break;
         case "zeroToHundredThousand":
             if (flMarketcap.zeroToHundredThousand.length < 1) return;
-            showFilter(0,flMarketcap.zeroToHundredThousand);
+            showFilter(0, flMarketcap.zeroToHundredThousand);
             break;
         default:
             if (flMarketcap.all.length < 1) return;
-            showFilter(0,flMarketcap.all);
+            showFilter(0, flMarketcap.all);
             break;
     }
-    
+
 });
 
 // Filter volumen 24h
-$('#select-v').on('change',function(){
+$('#select-v').on('change', function() {
     var value = $(this).val();
     if (value == null) return;
     switch (value) {
         case "moreTenMillions":
             if (flVolumen.moreTenMillions.length < 1) return;
-            showFilter(1,flVolumen.moreTenMillions)                
+            showFilter(1, flVolumen.moreTenMillions)
             break;
         case "moreAMillion":
             if (flVolumen.moreAMillion.length < 1) return;
-            showFilter(1,flVolumen.moreAMillion);              
-            break;        
+            showFilter(1, flVolumen.moreAMillion);
+            break;
         case "moreOneHundredThousand":
             if (flVolumen.moreOneHundredThousand.length < 1) return;
-            showFilter(1,flVolumen.moreOneHundredThousand);
+            showFilter(1, flVolumen.moreOneHundredThousand);
             break;
         case "moreTenThousand":
             if (flVolumen.moreTenThousand.length < 1) return;
-            showFilter(1,flVolumen.moreOneHundredThousand);
+            showFilter(1, flVolumen.moreTenThousand);
             break;
         case "moreOneThousand":
             if (flVolumen.moreOneThousand.length < 1) return;
-            showFilter(1,flVolumen.moreOneThousand);
+            showFilter(1, flVolumen.moreOneThousand);
             break;
         default:
             if (flVolumen.all.length < 1) return;
-            showFilter(1,flVolumen.all);
+            showFilter(1, flVolumen.all);
             break;
     }
-    
+
 });
 
 // Filter price
-$('#select-p').on('change',function(){
+$('#select-p').on('change', function() {
     var value = $(this).val();
     if (value == null) return;
     switch (value) {
         case "moreOneHundred":
             if (flPrice.moreOneHundred.length < 1) return;
-            showFilter(2,flPrice.moreOneHundred)                
+            showFilter(2, flPrice.moreOneHundred)
             break;
         case "between1and100":
             if (flPrice.between1and100.length < 1) return;
-            showFilter(2,flPrice.between1and100);              
-            break;        
+            showFilter(2, flPrice.between1and100);
+            break;
         case "between0_01and1_00":
             if (flPrice.between0_01and1_00.length < 1) return;
-            showFilter(2,flPrice.between0_01and1_00);
+            showFilter(2, flPrice.between0_01and1_00);
             break;
         case "between0_0001and0_01":
             if (flPrice.between0_0001and0_01.length < 1) return;
-            showFilter(2,flPrice.between0_0001and0_01);
+            showFilter(2, flPrice.between0_0001and0_01);
             break;
         case "betweenZeroand0_0001":
             if (flPrice.betweenZeroand0_0001.length < 1) return;
-            showFilter(2,flPrice.betweenZeroand0_0001);
+            showFilter(2, flPrice.betweenZeroand0_0001);
             break;
         default:
             if (flPrice.all.length < 1) return;
-            showFilter(2,flPrice.all);
+            showFilter(2, flPrice.all);
             break;
     }
-    
+
 });
 
-function showFilter(flag,object){
+function showFilter(flag, object) {
     next100 = null;
-    $("tbody>tr").remove();    
+    $("tbody>tr").remove();
     let data = object;
-    if(object[100]){ 
+    inject(flag, data);
+
+    if (object[100]) {
         let array = [];
         for (let i = 0; i < 35; i++) {
             array.push(object[i]);
-        }   
+        }
         data = array;
-    } 
-    filter = data; 
-    renderView(data, tab);
-    inject(flag, data);
+    }
     dinamicValues();
+    filter = data;
+    renderView(data, tab);
 }
 /*-------------------  Render view --------------------*/
 function renderView(data, tab) {
     try {
         /* foreach to set data in rows */
-        let tr; 
+        let tr;
         data.forEach((element, index) => {
             tr += `<tr>
                                 <td class="uk-table-shrink">${element.rank}</td>
@@ -780,7 +787,7 @@ function getData() {
             flMarketcap = marketCapFilter(allData);
             flVolumen = volume24hFilter(allData);
             flPrice = priceFilter(allData);
-            
+
             dinamicValues();
         },
         error: function(error) {
