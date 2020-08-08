@@ -1,10 +1,51 @@
-/* Load add event listeners */
+/*-------- Globals variables ------------*/
+let first100;
+let tab;
+let filter;
+let allData;
+let next100;
+let flMarketcap = {};
+let flVolumen = {};
+let flPrice = {};
+let etcValue;
+let btcValue;
+
+
+/*-------- Load add event listeners -----------*/
 document.addEventListener("DOMContentLoaded", function() {
     getData();
     tab = "price";
+    
 });
 
-/* Router functions */
+/*------------ dimanic -----------*/
+
+function dinamicValues(){
+    // Market cap
+    document.querySelector("#fl-m-all").innerText =`All(${flMarketcap.all.length})`;
+    document.querySelector("#fl-m-1b").innerText =`$1 Billion+ (${flMarketcap.billionMore.length})`;
+    document.querySelector("#fl-m-100-1m").innerText =`$100 Millions - $1 Billion(${flMarketcap.millionsToBillions.length}) `;
+    document.querySelector("#fl-m-10-100m").innerText =`$10 Millions - $100 Millions (${flMarketcap.millionsToMillions.length})`;
+    document.querySelector("#fl-m-1-10m").innerText =`$1 Million - $10 Millions (${flMarketcap.millionToMillions.length})`;
+    document.querySelector("#fl-m-100k-1m").innerText =`$100k - $1 Million(${flMarketcap.hundredThousandToMillion.length}) `;
+    document.querySelector("#fl-m-0-100k").innerText =`$0 - $100k (${flMarketcap.zeroToHundredThousand.length})`;
+    //volumen
+    document.querySelector('#fl-v-all').innerText = `All(${flVolumen.all.length})`;
+    document.querySelector('#fl-v-10').innerText = `$10 Million+ (${flVolumen.moreTenMillions.length})`;
+    document.querySelector('#fl-v-1').innerText = `$1 Million+(${flVolumen.moreAMillion.length})`;
+    document.querySelector('#fl-v-100k').innerText = `$100k+(${flVolumen.moreOneHundredThousand.length})`;
+    document.querySelector('#fl-v-10k').innerText = `$10k+(${flVolumen.moreTenThousand.length})`;
+    document.querySelector('#fl-v-1k').innerText = `$1k+(${flVolumen.moreOneThousand.length})`;
+    //price
+    document.querySelector("#fl-p-m-all").innerText = `All (${flPrice.all.length})`;
+    document.querySelector("#fl-p-m-100").innerText = `$100+ (${flPrice.moreOneHundred.length})`;
+    document.querySelector("#fl-p-m-1-100").innerText = `$1 - $100 (${flPrice.between1and100.length})`;
+    document.querySelector("#fl-p-m-0-3").innerText = `$0.01 - $1.00 (${flPrice.between0_01and1_00.length})`;
+    document.querySelector("#fl-p-m-0-2").innerText = `$0.0001 - $0.01 (${flPrice.between0_0001and0_01.length})`;
+    document.querySelector("#fl-p-m-0-1").innerText = `$0 - $0.0001 (${flPrice.betweenZeroand0_0001.length})`;
+    
+}
+/*---------------- Router functions-----------------------*/
 $("#btn_price").click(function() {
     $(".th-return").css("display", "none");
     $(".th-ath").css("display", "none");
@@ -23,19 +64,9 @@ $("#btn_ath").click(function() {
     $(".th-ath").css("display", "table-cell");
     tab = "ath";
 });
-/* Globals variables */
-let first100;
-let tab;
-let filter;
-let allData;
-let next100;
-let flMarketcap = {};
-let flVolumen = {};
-let flPrice = {};
-let etcValue;
-let btcValue;
 
-// Convert to Bitcoin
+
+/*--------------- Convert currency ------------*/
 $("#btc").click(function() {
     let data = first100;
     if (filter != null) {
@@ -53,11 +84,13 @@ $("#btc").click(function() {
     renderView(response, tab);
 });
 
-// Convert to Ethereum
 $("#eth").click(function() {
     console.log(first100);
 });
-/* Order by position */
+
+ /*----------- Order by---------------*/
+ 
+// Order by position 
 $("#position").click(function() {
     var data = first100;
     if (filter != null) {
@@ -78,7 +111,7 @@ $("#position").click(function() {
         renderView(data, tab);
     }
 });
-/* Order by name */
+// Order by name 
 $("#name").click(function() {
     var data = first100;
     if (filter != null) {
@@ -99,7 +132,7 @@ $("#name").click(function() {
         renderView(data, tab);
     }
 });
-/* Order by price */
+// Order by price 
 $("#price").click(function() {
     var data = first100;
     if (filter != null) {
@@ -121,7 +154,7 @@ $("#price").click(function() {
     }
 });
 
-/* Order by h1 */
+// Order by 1h 
 $("#1h").click(function() {
     var data = first100;
     if (filter != null) {
@@ -146,7 +179,7 @@ $("#1h").click(function() {
         renderView(data, tab);
     }
 });
-/* Order by 24h */
+// Order by 24h 
 $("#24h").click(function() {
     var data = first100;
     if (filter != null) {
@@ -173,7 +206,7 @@ $("#24h").click(function() {
         renderView(data, tab);
     }
 });
-/* Order by 7d */
+// Order by 7d 
 $("#7d").click(function() {
     var data = first100;
     if (filter != null) {
@@ -198,7 +231,7 @@ $("#7d").click(function() {
         renderView(data, tab);
     }
 });
-/* Order by volumen 24 */
+//Order by volumen 24 
 $("#volumen24").click(function() {
     var data = first100;
     if (filter != null) {
@@ -219,7 +252,7 @@ $("#volumen24").click(function() {
         renderView(data, tab);
     }
 });
-/* Order by fl */
+// Order by fl 
 $("#marketcap").click(function() {
     var data = first100;
     if (filter != null) {
@@ -240,7 +273,7 @@ $("#marketcap").click(function() {
         renderView(data, tab);
     }
 });
-/* Order by 30d */
+// Order by 30d 
 $("#30d").click(function() {
     var data = first100;
     if (filter != null) {
@@ -267,7 +300,7 @@ $("#30d").click(function() {
         renderView(data, tab);
     }
 });
-/* Order by 1y */
+// Order by 1y 
 $("#1y").click(function() {
     var data = first100;
     if (filter != null) {
@@ -292,7 +325,7 @@ $("#1y").click(function() {
         renderView(data, tab);
     }
 });
-/* Order by ath */
+// Order by ath 
 $("#ath").click(function() {
     var data = first100;
     if (filter != null) {
@@ -313,7 +346,7 @@ $("#ath").click(function() {
         renderView(data, tab);
     }
 });
-/* Order by ath date */
+// Order by ath date 
 $("#athDate").click(function() {
     var data = first100;
     if (filter != null) {
@@ -340,7 +373,7 @@ $("#athDate").click(function() {
         renderView(data, tab);
     }
 });
-/* Order by ath days */
+//Order by ath days 
 $("#athDays").click(function() {
     var data = first100;
     if (filter != null) {
@@ -367,7 +400,7 @@ $("#athDays").click(function() {
         renderView(data, tab);
     }
 });
-/* Order by ath days */
+// Order by ath days 
 $("#fromAth").click(function() {
     var data = first100;
     if (filter != null) {
@@ -396,7 +429,7 @@ $("#fromAth").click(function() {
         renderView(data, tab);
     }
 });
-/* Order by ath days */
+// Order by ath days 
 $("#next100").click(function() {
     filter = null;
     $("tbody>tr").remove();
@@ -407,6 +440,28 @@ $("#next100").click(function() {
     $("#next100").css("display", "none");
     $("#first100").css("display", "block");
 });
+ function inject(flag,data){
+    switch (flag) {
+        case 0:
+            flPrice =  priceFilter(data);
+            flVolumen= volume24hFilter(data);
+        break;
+        case 1:
+            flMarketcap =  marketCapFilter(data);
+            flVolumen = volume24hFilter(data);
+        break;
+        case 2:
+            flMarketcap =  marketCapFilter(data);
+            flPrice = priceFilter(data);
+        break;
+    
+        default: "En el default"
+            break;
+    }
+ }
+
+/*---------- Filters -------------*/
+
 $("#first100").click(function() {
     $("tbody>tr").remove();
     next100 = null;
@@ -415,199 +470,136 @@ $("#first100").click(function() {
     $("#next100").css("display", "block");
     $("#first100").css("display", "none");
 });
-/* Filter Market Cap */
-$("#fl-m-1b").click(function() {
-    next100 = null;
-    $("tbody>tr").remove();
-    renderView(flMarketcap.billionMore, tab);
-    filter = flMarketcap.billionMore;
-});
-$("#fl-m-100-1m").click(function() {
-    next100 = null;
-    $("tbody>tr").remove();
-    let data = [];
-    for (let i = 0; i < 35; i++) {
-        data.push(flMarketcap.hundredThousandToMillion[i]);
+
+// Filter Market Cap 
+$('#select-m').on('change',function(){
+    var value = $(this).val();
+    if (value == null) return;
+    switch (value) {
+        case "billionMore":
+            if (flMarketcap.billionMore.length < 1) return;
+            next100 = null;
+            $("tbody>tr").remove();
+            renderView(flMarketcap.billionMore, tab);
+            filter = flMarketcap.billionMore;  
+            inject(0,flMarketcap.billionMore)
+            dinamicValues()
+            break;
+        case "hundredThousandToMillion":
+            if (flMarketcap.hundredThousandToMillion.length < 1) return;
+            showFilter(0,flMarketcap.hundredThousandToMillion);              
+            break;
+        case "millionToMillions":
+            if (flMarketcap.millionToMillions.length < 1) return;
+            showFilter(0,flMarketcap.millionToMillions);              
+            break;
+        case "millionsToBillions":
+            if (flMarketcap.millionsToBillions.length < 1) return;
+            showFilter(0,flMarketcap.millionsToBillions);
+            break;
+        case "hundredThousandToMillion":
+            if (flMarketcap.hundredThousandToMillion.length < 1) return;
+            showFilter(0,flMarketcap.hundredThousandToMillion);
+            break;
+        case "zeroToHundredThousand":
+            if (flMarketcap.zeroToHundredThousand.length < 1) return;
+            showFilter(0,flMarketcap.zeroToHundredThousand);
+            break;
+        default:
+            if (flMarketcap.all.length < 1) return;
+            showFilter(0,flMarketcap.all);
+            break;
     }
-    renderView(data, tab);
-    filter = data;
+    
 });
-$("#fl-m-10-100m").click(function() {
+
+// Filter volumen 24h
+$('#select-v').on('change',function(){
+    var value = $(this).val();
+    if (value == null) return;
+    switch (value) {
+        case "moreTenMillions":
+            if (flVolumen.moreTenMillions.length < 1) return;
+            showFilter(1,flVolumen.moreTenMillions)                
+            break;
+        case "moreAMillion":
+            if (flVolumen.moreAMillion.length < 1) return;
+            showFilter(1,flVolumen.moreAMillion);              
+            break;        
+        case "moreOneHundredThousand":
+            if (flVolumen.moreOneHundredThousand.length < 1) return;
+            showFilter(1,flVolumen.moreOneHundredThousand);
+            break;
+        case "moreTenThousand":
+            if (flVolumen.moreTenThousand.length < 1) return;
+            showFilter(1,flVolumen.moreOneHundredThousand);
+            break;
+        case "moreOneThousand":
+            if (flVolumen.moreOneThousand.length < 1) return;
+            showFilter(1,flVolumen.moreOneThousand);
+            break;
+        default:
+            if (flVolumen.all.length < 1) return;
+            showFilter(1,flVolumen.all);
+            break;
+    }
+    
+});
+
+// Filter price
+$('#select-p').on('change',function(){
+    var value = $(this).val();
+    if (value == null) return;
+    switch (value) {
+        case "moreOneHundred":
+            if (flPrice.moreOneHundred.length < 1) return;
+            showFilter(2,flPrice.moreOneHundred)                
+            break;
+        case "between1and100":
+            if (flPrice.between1and100.length < 1) return;
+            showFilter(2,flPrice.between1and100);              
+            break;        
+        case "between0_01and1_00":
+            if (flPrice.between0_01and1_00.length < 1) return;
+            showFilter(2,flPrice.between0_01and1_00);
+            break;
+        case "between0_0001and0_01":
+            if (flPrice.between0_0001and0_01.length < 1) return;
+            showFilter(2,flPrice.between0_0001and0_01);
+            break;
+        case "betweenZeroand0_0001":
+            if (flPrice.betweenZeroand0_0001.length < 1) return;
+            showFilter(2,flPrice.betweenZeroand0_0001);
+            break;
+        default:
+            if (flPrice.all.length < 1) return;
+            showFilter(2,flPrice.all);
+            break;
+    }
+    
+});
+
+function showFilter(flag,object){
     next100 = null;
-    $("tbody>tr").remove();
-    let data = [];
-    for (let i = 0; i < 35; i++) {
-        data.push(flMarketcap.millionToMillions[i]);
-    }
-    filter = data;
+    $("tbody>tr").remove();    
+    let data = object;
+    if(object[100]){ 
+        let array = [];
+        for (let i = 0; i < 35; i++) {
+            array.push(object[i]);
+        }   
+        data = array;
+    } 
+    filter = data; 
     renderView(data, tab);
-});
-$("#fl-m-1-10m").click(function() {
-    next100 = null;
-    $("tbody>tr").remove();
-    let data = [];
-    for (let i = 0; i < 35; i++) {
-        data.push(flMarketcap.millionsToBillions[i]);
-    }
-    filter = data;
-    renderView(data, tab);
-});
-$("#fl-m-100k-1m").click(function() {
-    next100 = null;
-    $("tbody>tr").remove();
-    let data = [];
-    for (let i = 0; i < 35; i++) {
-        data.push(flMarketcap.millionsToMillions[i]);
-    }
-    filter = data;
-    renderView(data, tab);
-});
-$("#fl-m-0-100k").click(function() {
-    $("tbody>tr").remove();
-    let data = [];
-    for (let i = 0; i < 35; i++) {
-        data.push(flMarketcap.zeroToHundredThousand[i]);
-    }
-    filter = data;
-    renderView(data, tab);
-});
-$("#fl-m-all").click(function() {
-    next100 = null;
-    $("tbody>tr").remove();
-    let data = [];
-    for (let i = 0; i < 100; i++) {
-        data.push(flMarketcap.all[i]);
-    }
-    filter = data;
-    renderView(data, tab);
-});
-/* Filter volumen */
-$("#fl-v-10").click(function() {
-    next100 = null;
-    $("tbody>tr").remove();
-    let data = [];
-    for (let i = 0; i < 35; i++) {
-        data.push(flVolumen.moreTenMillions[i]);
-    }
-    filter = data;
-    renderView(data, tab);
-});
-$("#fl-v-1").click(function() {
-    next100 = null;
-    $("tbody>tr").remove();
-    let data = [];
-    for (let i = 0; i < 35; i++) {
-        data.push(flVolumen.moreAMillion[i]);
-    }
-    filter = data;
-    renderView(data, tab);
-});
-$("#fl-v-100k").click(function() {
-    next100 = null;
-    $("tbody>tr").remove();
-    let data = [];
-    for (let i = 0; i < 35; i++) {
-        data.push(flVolumen.moreOneHundredThousand[i]);
-    }
-    filter = data;
-    renderView(data, tab);
-});
-$("#fl-v-10k").click(function() {
-    next100 = null;
-    $("tbody>tr").remove();
-    let data = [];
-    for (let i = 0; i < 35; i++) {
-        data.push(flVolumen.moreTenThousand[i]);
-    }
-    filter = data;
-    renderView(data, tab);
-});
-$("#fl-v-1k").click(function() {
-    next100 = null;
-    $("tbody>tr").remove();
-    let data = [];
-    for (let i = 0; i < 35; i++) {
-        data.push(flVolumen.moreOneThousand[i]);
-    }
-    filter = data;
-    renderView(data, tab);
-});
-$("#fl-v-all").click(function() {
-    next100 = null;
-    $("tbody>tr").remove();
-    let data = [];
-    for (let i = 0; i < 100; i++) {
-        data.push(flVolumen.all[i]);
-    }
-    filter = data;
-    renderView(data, tab);
-});
-/* Filter price */
-$("#fl-p-m-100").click(function() {
-    next100 = null;
-    $("tbody>tr").remove();
-    let data = [];
-    for (let i = 0; i < 35; i++) {
-        data.push(flPrice.moreOneHundred[i]);
-    }
-    filter = data;
-    renderView(data, tab);
-});
-$("#fl-p-m-1-100").click(function() {
-    next100 = null;
-    $("tbody>tr").remove();
-    let data = [];
-    for (let i = 0; i < 35; i++) {
-        data.push(flPrice.between1and100[i]);
-    }
-    filter = data;
-    renderView(data, tab);
-});
-$("#fl-p-m-0-3").click(function() {
-    next100 = null;
-    $("tbody>tr").remove();
-    let data = [];
-    for (let i = 0; i < 35; i++) {
-        data.push(flPrice.between0_01and1_00[i]);
-    }
-    filter = data;
-    renderView(data, tab);
-});
-$("#fl-p-m-0-2").click(function() {
-    next100 = null;
-    $("tbody>tr").remove();
-    let data = [];
-    for (let i = 0; i < 35; i++) {
-        data.push(flPrice.between0_0001and0_01[i]);
-    }
-    filter = data;
-    renderView(data, tab);
-});
-$("#fl-p-m-0-1").click(function() {
-    next100 = null;
-    $("tbody>tr").remove();
-    let data = [];
-    for (let i = 0; i < 35; i++) {
-        data.push(flPrice.betweenZeroand0_0001[i]);
-    }
-    filter = data;
-    renderView(data, tab);
-});
-$("#fl-p-m-all").click(function() {
-    next100 = null;
-    $("tbody>tr").remove();
-    let data = [];
-    for (let i = 0; i < 100; i++) {
-        data.push(flPrice.all[i]);
-    }
-    filter = data;
-    renderView(data, tab);
-});
-/* Render view */
+    inject(flag, data);
+    dinamicValues();
+}
+/*-------------------  Render view --------------------*/
 function renderView(data, tab) {
     try {
         /* foreach to set data in rows */
-        let tr;
+        let tr; 
         data.forEach((element, index) => {
             tr += `<tr>
                                 <td class="uk-table-shrink">${element.rank}</td>
@@ -733,7 +725,7 @@ function renderView(data, tab) {
     }
 }
 
-/* Dark Mode */
+/*-------------- Dark Mode -----------------*/
 function theme(value) {
     if (value == "true") {
         $("body").addClass("uk-light uk-background-secondary");
@@ -763,7 +755,7 @@ function theme(value) {
         $("tbody th").css("border", "#b3b3b3 1px solid");
     }
 }
-/* Request to API  Data Tickers */
+/*------------- Request to API  Data Tickers ------------------*/
 function getData() {
     console.time("Peticion");
     $.ajax({
@@ -788,6 +780,8 @@ function getData() {
             flMarketcap = marketCapFilter(allData);
             flVolumen = volume24hFilter(allData);
             flPrice = priceFilter(allData);
+            
+            dinamicValues();
         },
         error: function(error) {
             console.log(error);
@@ -819,7 +813,7 @@ function getData() {
     });
 }
 
-
+/*------------- Filters -------------------*/
 // Funtion return object with arrays filtereds
 function marketCapFilter(dataFilters) {
     let filters = {};
