@@ -438,8 +438,7 @@ function inject(flag, data) {
 
 function dinamicValues() {
     // Market cap
-    $("#fl-m-all").html(`All(${flMarketcap.all.length})`);
-    // document.querySelector("#fl-m-all").innerText = `All(${flMarketcap.all.length})`;
+    document.querySelector("#fl-m-all").innerText = `All(${flMarketcap.all.length})`;
     document.querySelector("#fl-m-1b").innerText = `$1 Billion+ (${flMarketcap.billionMore.length})`;
     document.querySelector("#fl-m-100-1b").innerText = `$100 Millions - $1 Billion(${flMarketcap.millionsToBillions.length}) `;
     document.querySelector("#fl-m-10-100m").innerText = `$10 Millions - $100 Millions (${flMarketcap.millionsToMillions.length})`;
@@ -478,6 +477,13 @@ $('#select-m').on('change', function() {
     var value = $(this).val();
     if (value == null) return;
     switch (value) {
+        case "mc":
+            next100 = null;
+            flPrice = priceFilter(allData);
+            flVolumen = volume24hFilter(allData);
+            flMarketcap = marketCapFilter(allData);
+            showFilter(0, flMarketcap.all);
+            break;
         case "billionMore":
             if (flMarketcap.billionMore.length < 1) return;
             next100 = null;
@@ -524,6 +530,12 @@ $('#select-v').on('change', function() {
     var value = $(this).val();
     if (value == null) return;
     switch (value) {
+        case "v":
+            flPrice = priceFilter(allData);
+            flVolumen = volume24hFilter(allData);
+            flMarketcap = marketCapFilter(allData);
+            showFilter(1, flVolumen.all);
+            break;
         case "moreTenMillions":
             if (flVolumen.moreTenMillions.length < 1) return;
             showFilter(1, flVolumen.moreTenMillions)
@@ -557,6 +569,12 @@ $('#select-p').on('change', function() {
     var value = $(this).val();
     if (value == null) return;
     switch (value) {
+        case "p":
+            flPrice = priceFilter(allData);
+            flVolumen = volume24hFilter(allData);
+            flMarketcap = marketCapFilter(allData);
+            showFilter(2, flPrice.all);
+            break;
         case "moreOneHundred":
             if (flPrice.moreOneHundred.length < 1) return;
             showFilter(2, flPrice.moreOneHundred)
@@ -747,6 +765,7 @@ function theme(value) {
         $(".uk-dropdown").css("background-color", "black");
         $("tbody td").css("border", "#585e61 1px solid");
         $("tbody th").css("border", "#585e61 1px solid");
+        $("option").css("background-color", "#222");
     } else {
         $("body").removeClass("uk-light uk-background-secondary");
         $("#theme").val(true);
@@ -760,6 +779,7 @@ function theme(value) {
         $(".uk-dropdown").css("background-color", "white");
         $("tbody td").css("border", "#b3b3b3 1px solid");
         $("tbody th").css("border", "#b3b3b3 1px solid");
+        $("option").css("background-color", "white");
     }
 }
 /*------------- Request to API  Data Tickers ------------------*/
