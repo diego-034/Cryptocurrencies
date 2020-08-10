@@ -9,15 +9,11 @@ let flVolumen = {};
 let flPrice = {};
 let etcValue;
 let btcValue;
-
-
 /*-------- Load add event listeners -----------*/
 document.addEventListener("DOMContentLoaded", function() {
     getData();
     tab = "price";
-
 });
-
 /*---------------- Router functions-----------------------*/
 $("#btn_price").click(function() {
     $(".th-return").css("display", "none");
@@ -37,14 +33,11 @@ $("#btn_ath").click(function() {
     $(".th-ath").css("display", "table-cell");
     tab = "ath";
 });
-
-
 /*--------------- Convert currency ------------*/
 $("#btc").click(function() {
     let data = first100;
     if (filter != null) {
         data = filter;
-        console.log(filter);
     }
     if (next100 != null) {
         data = next100;
@@ -57,9 +50,7 @@ $("#btc").click(function() {
     renderView(response, tab);
 });
 
-$("#eth").click(function() {
-    console.log(first100);
-});
+$("#eth").click(function() {});
 
 /*----------- Order by---------------*/
 
@@ -68,7 +59,6 @@ $("#position").click(function() {
     var data = first100;
     if (filter != null) {
         data = filter;
-        console.log(filter);
     }
     if (next100 != null) {
         data = next100;
@@ -89,7 +79,6 @@ $("#name").click(function() {
     var data = first100;
     if (filter != null) {
         data = filter;
-        console.log(filter);
     }
     if (next100 != null) {
         data = next100;
@@ -110,7 +99,6 @@ $("#price").click(function() {
     var data = first100;
     if (filter != null) {
         data = filter;
-        console.log(filter);
     }
     if (next100 != null) {
         data = next100;
@@ -132,7 +120,6 @@ $("#1h").click(function() {
     var data = first100;
     if (filter != null) {
         data = filter;
-        console.log(filter);
     }
     if (next100 != null) {
         data = next100;
@@ -157,7 +144,6 @@ $("#24h").click(function() {
     var data = first100;
     if (filter != null) {
         data = filter;
-        console.log(filter);
     }
     if (next100 != null) {
         data = next100;
@@ -184,7 +170,6 @@ $("#7d").click(function() {
     var data = first100;
     if (filter != null) {
         data = filter;
-        console.log(filter);
     }
     if (next100 != null) {
         data = next100;
@@ -209,7 +194,6 @@ $("#volumen24").click(function() {
     var data = first100;
     if (filter != null) {
         data = filter;
-        console.log(filter);
     }
     if (next100 != null) {
         data = next100;
@@ -230,7 +214,6 @@ $("#marketcap").click(function() {
     var data = first100;
     if (filter != null) {
         data = filter;
-        console.log(filter);
     }
     if (next100 != null) {
         data = next100;
@@ -251,7 +234,6 @@ $("#30d").click(function() {
     var data = first100;
     if (filter != null) {
         data = filter;
-        console.log(filter);
     }
     if (next100 != null) {
         data = next100;
@@ -303,7 +285,6 @@ $("#ath").click(function() {
     var data = first100;
     if (filter != null) {
         data = filter;
-        console.log(filter);
     }
     if (next100 != null) {
         data = next100;
@@ -324,7 +305,6 @@ $("#athDate").click(function() {
     var data = first100;
     if (filter != null) {
         data = filter;
-        console.log(filter);
     }
     if (next100 != null) {
         data = next100;
@@ -351,7 +331,6 @@ $("#athDays").click(function() {
     var data = first100;
     if (filter != null) {
         data = filter;
-        console.log(filter);
     }
     if (next100 != null) {
         data = next100;
@@ -378,7 +357,6 @@ $("#fromAth").click(function() {
     var data = first100;
     if (filter != null) {
         data = filter;
-        console.log(filter);
     }
     if (next100 != null) {
         data = next100;
@@ -435,7 +413,6 @@ function inject(flag, data) {
     }
 }
 /*------------ dimanic -----------*/
-
 function dinamicValues() {
     // Market cap
     document.querySelector("#fl-m-all").innerText = `All(${flMarketcap.all.length})`;
@@ -459,10 +436,8 @@ function dinamicValues() {
     document.querySelector("#fl-p-m-0-3").innerText = `$0.01 - $1.00 (${flPrice.between0_01and1_00.length})`;
     document.querySelector("#fl-p-m-0-2").innerText = `$0.0001 - $0.01 (${flPrice.between0_0001and0_01.length})`;
     document.querySelector("#fl-p-m-0-1").innerText = `$0 - $0.0001 (${flPrice.betweenZeroand0_0001.length})`;
-
 }
 /*---------- Filters -------------*/
-
 $("#first100").click(function() {
     $("tbody>tr").remove();
     next100 = null;
@@ -471,7 +446,6 @@ $("#first100").click(function() {
     $("#next100").css("display", "block");
     $("#first100").css("display", "none");
 });
-
 // Filter Market Cap 
 $('#select-m').on('change', function() {
     var value = $(this).val();
@@ -522,9 +496,7 @@ $('#select-m').on('change', function() {
             showFilter(0, flMarketcap.all);
             break;
     }
-
 });
-
 // Filter volumen 24h
 $('#select-v').on('change', function() {
     var value = $(this).val();
@@ -602,7 +574,7 @@ $('#select-p').on('change', function() {
     }
 
 });
-
+// Update values in dropdown and select 35 items if(items>100)
 function showFilter(flag, object) {
     next100 = null;
     $("tbody>tr").remove();
@@ -906,10 +878,6 @@ function convertBtc(data) {
     }
     console.log(data);
     return data;
-}
-
-function convertEth() {
-
 }
 /* Date convert to days 239 days */
 function days(oldDate, actualDate) {
