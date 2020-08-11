@@ -4,4 +4,3 @@
 2.Render view recived params tab and data(
     data = array with information about
     cryptocurrencies), and append tr at tbody.
-3.

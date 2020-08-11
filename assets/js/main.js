@@ -786,30 +786,6 @@ function getData() {
             console.log(error);
         }
     });
-    // Request price BTC to conver USD
-    $.ajax({
-        url: "https://api.coinpaprika.com/v1/ticker/btc-bitcoin",
-        type: 'GET',
-        dataType: "json",
-        success: function(response) {
-            btcValue = response;
-        },
-        error: function(error) {
-            console.log(error);
-        }
-    });
-    // Request price ETH to convert USD
-    $.ajax({
-        url: "https://api.coinpaprika.com/v1/ticker/eth-ethereum",
-        type: 'GET',
-        dataType: "json",
-        success: function(response) {
-            ethValue = response;
-        },
-        error: function(error) {
-            console.log(error);
-        }
-    });
 }
 
 /*------------- Filters -------------------*/
@@ -865,19 +841,6 @@ function priceFilter(dataFilters) {
     filters.between0_0001and0_01 = between0_0001and0_01;
     filters.betweenZeroand0_0001 = betweenZeroand0_0001;
     return filters;
-}
-// Try convert to BTC
-function convertBtc(data) {
-    for (let i = 0; i < data.length; i++) {
-        data[i].quotes.USD.price = (data[i].quotes.USD.price * 1) / btcValue.price_usd;
-        data[i].quotes.USD.volume_24h = (data[i].quotes.USD.volume_24h * 1) / btcValue.price_usd;
-        data[i].quotes.USD.market_cap = (data[i].quotes.USD.market_cap * 1) / btcValue.price_usd;
-        data[i].quotes.USD.ath_price = (data[i].quotes.USD.ath_price * 1) / btcValue.price_usd;
-
-        data[i].status = true;
-    }
-    console.log(data);
-    return data;
 }
 /* Date convert to days 239 days */
 function days(oldDate, actualDate) {
